@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -85,6 +86,8 @@
         </form>
       </div>
     </nav>
+
+    {% block content %}{% endblock %}
 
     <!-- Footer Section -->
     <footer class="bg-dark text-light py-3">
