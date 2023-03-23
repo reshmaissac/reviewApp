@@ -5,18 +5,6 @@ from .forms import *
 from django.db.models import Avg
 
 # Create your views here.
-def home(request):
-	query = request.GET.get("title")
-	allproducts = None
-	if query:
-		allproducts = Product.objects.filter(name__icontains=query)
-	else:	
-		allproducts = Product.objects.all()
-		print("Hello {0} ..".format(allproducts))
-	context = {
-    	"product":allproducts,
-    }
-	return render(request,'home/index.html',context)
 
 def detail(request,id):
 	product=Product.objects.get(id=id)
