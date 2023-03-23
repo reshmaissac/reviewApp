@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+<<<<<<< HEAD
 # Create your models here.
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
@@ -20,3 +21,5 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+=======
+>>>>>>> 91026d0 (Homepage linked with base.html)

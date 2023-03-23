@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
@@ -40,3 +41,8 @@ def add_products(request):
 		else:
 			return redirect("products:home")
 	return redirect("accounts:login")
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> 91026d0 (Homepage linked with base.html)
