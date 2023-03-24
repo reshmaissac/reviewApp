@@ -13,7 +13,7 @@ def home(request):
 	context = {
     	"product":allproducts,
     }
-	return render(request,'home/index.html',context)
+	return render(request,'home/home.html',context)
 
 def about(request):
     return render(request, 'home/about.html', {'title': 'About Us'})
