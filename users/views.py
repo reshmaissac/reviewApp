@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CustomAuthenticationForm
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
-# Create your views here.
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
@@ -42,8 +45,30 @@ def profile(request):
         }
 
         return render(request, 'users/profile.html', context)
-def login(request):
-    return render(request, 'users/login.html', {'title': 'Sign In'})
 
-def logout(request):
-    return render(request, 'users/logout.html', {'title': 'Sign Out'})
+def login_view(request):
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, f'Welcome {username}!')
+                return redirect('home-home')
+            else:
+                messages.error(request, 'Invalid username or password')
+        else:
+            messages.error(request, 'Invalid username or password')
+    else:
+        form = AuthenticationForm()
+    form.helper = FormHelper()
+    form.helper.form_method = 'post'
+    form.helper.add_input(Submit('submit', 'Login', css_class='btn-primary'))
+    return render(request, 'users/login.html', {'form': form, 'title': 'Sign In'})
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been logged out')
+    return redirect('login')
