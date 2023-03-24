@@ -43,7 +43,7 @@ def profile(request):
 
         return render(request, 'users/profile.html', context)
 def login(request):
-    return render(request, 'home/login.html', {'title': 'Sign In'})
+    return render(request, 'users/login.html', {'title': 'Sign In'})
 
 def logout(request):
-    return render(request, 'home/logout.html', {'title': 'Sign Out'})
+    return render(request, 'users/logout.html', {'title': 'Sign Out'})
