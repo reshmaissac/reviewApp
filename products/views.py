@@ -28,15 +28,15 @@ def add_products(request):
 	if request.user.is_authenticated:
 		if request.user.is_superuser:
 			if request.method == "POST":
-				form = ProductForm(request.POST or None)
+				form = ProductForm(request.POST or None, request.FILES)
 
 				if form.is_valid():
 					data = form.save(commit=False)
 					data.save()
-					return redirect("products:home")
+					return redirect("home:home")
 			else:
 				form = ProductForm()
-			return render(request,'products/addproducts.html',{"form":form,"controller":"Add Products"})
+			return render(request,'products/add_products.html',{"form":form,"controller":"Add Products"})
 		else:
-			return redirect("products:home")
-	return redirect("accounts:login")
+			return redirect("home:home")
+	return redirect("users:login")
