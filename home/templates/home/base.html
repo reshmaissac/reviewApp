@@ -1,5 +1,4 @@
 {% load static %}
-{% load messages %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -88,4 +87,12 @@
         </form>
       </div>
     </nav>
-    {% block content %}{% endblock %}
+    <div class="row">
+      <div class="col-md-8">
+      {% if messages %}
+      {% for message in messages %}
+          <div class="alert alert-{{message.tags}}">{{message}}</div>
+      {% endfor %}
+      {% endif %}
+      {% block content %}{% endblock %}
+      </div>

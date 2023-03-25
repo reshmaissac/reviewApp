@@ -10,11 +10,12 @@ from crispy_forms.layout import Submit
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
+        
+
 
         if form.is_valid():
             form.save()
-            messages.success(request, f'Your account has been created! Now you can login!')
-
+            messages.success(request, f'Your account has been created! Now you can login!')           
             return redirect('login')
         else:
             messages.warning(request, 'Invalid input')
@@ -49,20 +50,22 @@ def profile(request):
 def login_view(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
+
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
+                
+
                 login(request, user)
                 messages.success(request, f'Welcome {username}!')
                 return redirect('home-home')
             else:
-                messages.error(request, 'Invalid username or password')
-        else:
-            messages.error(request, 'Invalid username or password')
+                messages.warning(request, 'Invalid username or password')
+                return redirect('login')
     else:
-        form = AuthenticationForm()
+        form = CustomAuthenticationForm()
     form.helper = FormHelper()
     form.helper.form_method = 'post'
     form.helper.add_input(Submit('submit', 'Login', css_class='btn-primary'))
