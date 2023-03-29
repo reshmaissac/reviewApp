@@ -6,7 +6,7 @@ from django.db.models import Avg
 
 # Create your views here.
 def home(request):
-	query = request.GET.get("title")
+	query = request.GET.get("q")
 	allproducts = None
 	if query:
 		allproducts = Product.objects.filter(name__icontains=query)
