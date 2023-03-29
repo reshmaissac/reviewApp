@@ -5,6 +5,18 @@ from .forms import *
 from django.db.models import Avg
 
 # Create your views here.
+def home(request):
+	query = request.GET.get("title")
+	allproducts = None
+	if query:
+		allproducts = Product.objects.filter(name__icontains=query)
+	else:	
+		allproducts = Product.objects.all()
+		print("Hello {0} ..".format(allproducts))
+	context = {
+    	"product":allproducts,
+    }
+	return render(request,'home/home.html',context)
 
 def detail(request,id):
 	product=Product.objects.get(id=id)
@@ -33,10 +45,10 @@ def add_products(request):
 				if form.is_valid():
 					data = form.save(commit=False)
 					data.save()
-					return redirect("home:home")
+					return redirect("products:home")
 			else:
 				form = ProductForm()
 			return render(request,'products/add_products.html',{"form":form,"controller":"Add Products"})
 		else:
-			return redirect("home:home")
+			return redirect("products:home")
 	return redirect("users:login")
