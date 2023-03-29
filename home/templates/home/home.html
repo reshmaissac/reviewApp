@@ -11,7 +11,7 @@
     <section class="container py-5">
       <h2 class="mb-4">Our Products</h2>
       <div class="row">
-        {% for p in product %}
+        {% for p in page_obj.object_list %}
         <div class="col-md-4 mb-4">
           <div class="card">
             
@@ -24,6 +24,16 @@
           </div>
         </div>
         {% endfor %}
+        </div>
+        <div style="text-align:center">
+          {%if page_obj.has_previous %} {# whether the previous page exists #}
+              <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+          {% endif %}
+          <span>{{page_obj.number}}</span> {# the current page number #}
+          
+          {%if page_obj.has_next %} {# whether the next page exists #}
+              <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+          {% endif %}
         </div>
       </section>
 {% endblock %}
