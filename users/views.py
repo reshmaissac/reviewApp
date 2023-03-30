@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, CustomAuthenticationForm
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+
 
 def register(request):
     if request.method == 'POST':
@@ -24,6 +22,27 @@ def register(request):
     else:
         form = UserRegisterForm()
         return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
+    
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+
+        if form.is_valid():
+            # log user in
+            messages.success(request, 'You have successfully logged in.')
+            return redirect('home-home')
+
+        else:
+            messages.error(request, "Invalid username or password.")
+
+    else:
+        form = AuthenticationForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'users/login.html', context)
 
 @login_required
 def profile(request):
@@ -47,31 +66,4 @@ def profile(request):
 
         return render(request, 'users/profile.html', context)
 
-def login_view(request):
-    if request.method == 'POST':
-        form = CustomAuthenticationForm(data=request.POST)
 
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                
-
-                login(request, user)
-                messages.success(request, f'Welcome {username}!')
-                return redirect('home-home')
-            else:
-                messages.warning(request, 'Invalid username or password')
-                return redirect('login')
-    else:
-        form = CustomAuthenticationForm()
-    form.helper = FormHelper()
-    form.helper.form_method = 'post'
-    form.helper.add_input(Submit('submit', 'Login', css_class='btn-primary'))
-    return render(request, 'users/login.html', {'form': form, 'title': 'Sign In'})
-
-def logout_view(request):
-    logout(request)
-    messages.success(request, 'You have been logged out')
-    return redirect('login')
