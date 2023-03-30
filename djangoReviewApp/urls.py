@@ -22,5 +22,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+<<<<<<< HEAD
      path('', include('products.urls')),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+=======
+    path('product/', include('products.urls')),
+]
+>>>>>>> 8e34b7b (Linked product001 to test integration.)

@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     #apps
     'home',
     'products',
+<<<<<<< HEAD
     'crispy_forms',
+=======
+>>>>>>> 8e34b7b (Linked product001 to test integration.)
 ]
 
 MIDDLEWARE = [

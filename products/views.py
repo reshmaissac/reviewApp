@@ -57,4 +57,21 @@ def add_products(request):
 from django.shortcuts import render
 
 # Create your views here.
+<<<<<<< HEAD
 >>>>>>> 91026d0 (Homepage linked with base.html)
+=======
+from django.shortcuts import render
+
+# Create your views here.
+def home(request):
+    return render(request, 'home/home.html', {'title': 'Welcome Page'})
+
+def about(request):
+    return render(request, 'home/about.html', {'title': 'About Us'})
+
+def contact(request):
+    return render(request, 'home/contact.html', {'title': 'Contact Us'})
+
+def products(request):
+    return render(request, 'products/product001.html', {'title': 'Products'})
+>>>>>>> 8e34b7b (Linked product001 to test integration.)
