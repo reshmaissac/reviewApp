@@ -1,18 +1,19 @@
-
-
 {% block content %}
 
 
 <div class="container">
+	<div style="width: 100%; padding: 50px; border: 10px;">
 	<br>
-	<div class="card">
-		<div class="row">
-			<div class="col-md-4">
+	<div class="card" >
+		<table>
+			<tr>
+			<td>
 				
-				<p><img class="w3-round-small" style="width:25%; height:60%;" src="{{prod.photo.url}}"></p>
+				<p><img class="w3-round-small" style="width:auto; height:auto;" src="{{prod.photo.url}}"></p>
+				
+			<td>
+			<td>
 				<h3>{{ prod.name }}</h3>
-			</div>
-			<div class="col-md-8">
                 <p>Product Name: {{ prod.name }}</p>
 				<p>Product Type: {{ prod.category }}</p>
                 <p>Product Brand: {{ prod.brand }}</p>
@@ -25,12 +26,55 @@
 						
 						{% endif %}
 				{% endif %}
-			</div>
-		</div>
+			<td>
+		</tr>
+		</table>
 	</div>
 
 <br>
-<div class="card">
+
+<div id="reviews" style="width: 60%; padding: 50px; background-color: #dfe3eb; border-radius: 5px; " >
+	<h2>Rate the Product</h2>
+{% if request.user.is_authenticated %}
+<form method="post" action=".">
+	{%csrf_token%}
+	<div>
+		<label>Rating</label>
+		<select name="rating">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+	</div><br>
+	<div>
+		<label>Comment</label><br>
+		<textarea name="comment"></textarea>
+	</div><br>
+	<div>
+		<button>Submit</button>
+	</div>
+</form>
+{%endif%}
+
+</div>
+<br>
+<div style="width: 60%; padding-top: 10px; padding: 50px; background-color: #dfe3eb; border-radius: 5px;">
+<h2>Reviews</h2>
+{% for review in prod.reviews.all%}
+	<div id="displayReview">
+		<strong>Rating : </strong>{{ review.rating}}/5<br>
+		<strong>Comment : </strong>
+		{{review.comment}}
+
+	</div><br><br>
+
+{% endfor %}
+
+</div>
+
+<!-- <div class="card">
 	<div class="card=-body">
 		<h3 class="text-center">Reviews</h3>
 		<form action=" " method="POST">
@@ -43,9 +87,10 @@
 			<br>
 			<input type="submit" class="btn btn-danger" value="Add Review">
 		</form>
-	</div></div>
+	</div></div> -->
 	<br>
-	<div class="card" style="background-color: black;">
+
+	<!-- <div class="card" style="background-color: black;">
 		<div class="card-body" style="background:white;">
 			<h3 class="text-center">Reviews</h3>
 			{% for review in reviews %}
@@ -53,17 +98,17 @@
 				<div class="col-md-3">
 					<h5 class="test-left">{{ review.user.username }}</h5>
 					<h5>{{ review.rating }}</h5>
-					{% if request.user == review.user %}
+					{% if request.user == review.user %} -->
 					<!-- <a href="{% url 'main:edit_review' prod.id review.id %}">Edit</a>
 					<a href="{% url 'main:delete_review' prod.id review.id %}" onclick="return confirm('Are you sure want to delete this?');">Delete</a> -->
-					{% endif %}
+					<!--{% endif %}
 				</div>
 				<div class="col-md-9">
 					<p>{{ review.comment }}</p>
 				</div>
 			</div>
 	<br>
-	{% endfor %}</div></div>
+	{% endfor %}</div></div> -->
 </div>
 </div>
 {% endblock %}

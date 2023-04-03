@@ -20,3 +20,8 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Review(models.Model):
+    product=models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
+    rating=models.IntegerField(default=0)
+    comment=models.TextField()
