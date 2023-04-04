@@ -34,16 +34,9 @@ def home(request):
     }
 	return render(request,'home/home.html',context)
 
-<<<<<<< HEAD
 # def detail(request,id):
 # 	product=Product.objects.get(id=id)
 # 	""" reviews = Review.objects.filter(product=id).order_by("-comment")
-=======
-#function to get details of product by id
-def detail(request,id):
-	product=Product.objects.get(id=id)
-	""" reviews = Review.objects.filter(product=id).order_by("-comment")
->>>>>>> 160f805b2c24af051e5980f63f1179bc63550621
 
 # 	average = reviews.aggregate(Avg("rating"))["rating__avg"]
 # 	if average == None:
