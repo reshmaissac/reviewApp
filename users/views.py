@@ -9,22 +9,17 @@ from django.urls import reverse
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
-        
-
 
         if form.is_valid():
             form.save()
-            messages.success(request, f'Your account has been created! Now you can login!')           
-            return redirect('login')
+            messages.success(request, 'Your account has been created! Now you can login.')
+            return redirect('users:login')
         else:
-            messages.warning(request, 'Invalid input')
-
-            return redirect('home-home')
+            messages.warning(request, 'Invalid input. Please correct the errors below.')
     else:
         form = UserRegisterForm()
-        return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
-    
 
+    return render(request, 'users/register.html', {'form': form})
 
      
 @login_required
@@ -40,7 +35,7 @@ def profile(request):
             p_form.save()
             messages.success(request, f'Your account has been successfully updated')
 
-            return redirect('profile')
+            return redirect('users:profile')
     else:
         u_form = UserUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
@@ -50,5 +45,5 @@ def profile(request):
         }
 
         return render(request, 'users/profile.html', context)
-    return redirect('login')
+    return redirect('users:login')
 

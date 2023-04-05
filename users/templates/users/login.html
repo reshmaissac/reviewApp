@@ -7,8 +7,13 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">{{ title }}</div>
+          <div class="card-header">My Ecommercee Website Login</div>
           <div class="card-body">
+            {% if form.errors %}
+              <div class="alert alert-danger">
+                <strong>{{ form.errors }}</strong>
+              </div>
+            {% endif %}
             <form method="post">
               {% csrf_token %}
               <div class="form-group">
