@@ -6,31 +6,24 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
 
 
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import UserRegisterForm
-
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import UserRegisterForm
-
 def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
+        
+
 
         if form.is_valid():
             form.save()
-            messages.success(request, f'Your account has been created! Now you can login!')
+            messages.success(request, f'Your account has been created! Now you can login!')           
             return redirect('login')
         else:
-            messages.warning(request, 'Invalid input. Please correct the errors below.')
+            messages.warning(request, 'Invalid input')
+
+            return redirect('home-home')
     else:
         form = UserRegisterForm()
-
-    return render(request, 'users/register.html', {'form': form})
-
-
-
+        return render(request, 'users/register.html', {'form': form, 'title': 'Register'})
+    
 
 
      
@@ -47,7 +40,7 @@ def profile(request):
             p_form.save()
             messages.success(request, f'Your account has been successfully updated')
 
-            return redirect('users:profile')
+            return redirect('profile')
     else:
         u_form = UserUpdateForm(instance = request.user)
         p_form = ProfileUpdateForm(instance = request.user.profile)
@@ -57,5 +50,5 @@ def profile(request):
         }
 
         return render(request, 'users/profile.html', context)
-    return redirect('users:login')
+    return redirect('login')
 
