@@ -1,8 +1,8 @@
 {% extends 'home/base.html' %}
 
 {% block content %}
-  <h1>Fetched Products</h1>
-  <form method="post">
+  <h1 style="padding: 10px;"> Fetched Products </h1>
+  <form method="post" style="padding: 100px;">
     {% csrf_token %}
     <button style="background:green; cursor:pointer;color: white;" type="submit">Save to Database</button>
     <table>
