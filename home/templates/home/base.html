@@ -2,6 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <style>
+      .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(180, 176, 176);
+        color: white;
+        text-align: center;
+      }
+    </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My E-commerce Website</title>
@@ -23,8 +35,11 @@
   </head>
   <body>
     <!-- Navigation Section -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">My E-commerce Website</a>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      style="position: fixed; width: 100%; left: 0cm; right: 0cm; top: 0"
+    >
+      <a class="navbar-brand" href="{% url 'products:home' %}">My E-commerce Website</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -39,7 +54,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="">Home</a>
+            <a class="nav-link" href="{% url 'products:home' %}">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">Products</a>
@@ -78,6 +93,12 @@
               <li>
                 <a class="dropdown-item" href="{% url 'products:add_products' %}">Add Product</a>
               </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'api:fetch_products' %}">Import from API</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'products:add_products' %}">Add Product</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -92,10 +113,11 @@
       </div>
     </nav>
 
+    <br /><br />
     {% block content %}{% endblock %}
 
     <!-- Footer Section -->
-    <footer class="bg-dark text-light py-3">
+    <footer class="bg-dark text-light py-3 footer">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
