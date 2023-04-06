@@ -71,3 +71,6 @@ def contact(request):
 
 def products(request):
     return render(request, 'products/product001.html', {'title': 'Products'})
+
+def products(request):
+    return render(request, 'products/product001.html', {'title': 'Products'})
