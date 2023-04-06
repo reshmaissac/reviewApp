@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.urls import reverse
+from django.contrib.auth.views import PasswordResetView
 
 
 def register(request):
@@ -47,3 +48,5 @@ def profile(request):
         return render(request, 'users/profile.html', context)
     return redirect('users:login')
 
+
+    

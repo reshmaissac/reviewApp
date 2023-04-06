@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">My Ecommercee Website Login</div>
+          <div class="card-header bg-primary text-white">My Ecommerce Website Login</div>
           <div class="card-body">
             {% if form.errors %}
               <div class="alert alert-danger">
@@ -22,19 +22,18 @@
               <div class="form-group">
                 {{ form.password|as_crispy_field }}
               </div>
-              <div class="form-group">
-                <div class="custom-control custom-checkbox">
-                  {{ form.remember_me }}
-                  <label class="custom-control-label" for="{{ form.remember_me.id_for_label }}">Remember Me</label>
-                </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="{{ form.remember_me.id_for_label }}" name="{{ form.remember_me.name }}"{% if form.remember_me.value %} checked{% endif %}>
+                <label class="form-check-label" for="{{ form.remember_me.id_for_label }}">Remember Me</label>
               </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary">Sign In</button>
-                <small class="form-text text-muted">
-                  Don't have an account? <a href="{% url 'users:register' %}">Register</a>
-                </small>
-              </div>
+              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             </form>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">Don't have an account? <a href="{% url 'users:register' %}">Register</a>
+              <br>
+              <a href="{% url 'users:password_reset' %}">Forgot password?</a>
+            </small>
           </div>
         </div>
       </div>

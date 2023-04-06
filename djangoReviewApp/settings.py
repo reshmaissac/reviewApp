@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,7 +75,19 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'djangoReviewApp.wsgi.application'
+
+#Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'shopgenovia@gmail.com'
+EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
+
+
 
 
 # Database
