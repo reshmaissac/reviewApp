@@ -16,3 +16,4 @@ Pillow==9.4.0
 pipenv==2023.2.4
 PyMySQL==1.0.2
 whitenoise==6.4.0
+requests==2.25.1
