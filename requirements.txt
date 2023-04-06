@@ -22,7 +22,7 @@ sqlparse==0.4.3
 virtualenv==20.19.0
 virtualenv-clone==0.5.7
 whitenoise==6.4.0
-python-apt>=2.4
+python-apt<=2.4
 python-debian===0.1.43ubuntu1
 python-magic==0.4.24
 ssh-import-id==5.11
