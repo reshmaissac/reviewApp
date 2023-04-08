@@ -6,3 +6,8 @@ class ProductForm(forms.ModelForm):
 		model = Product
 		fields = ('name','brand','category','cost','release_date','description','averagerating','photo')
 
+
+# class ReviewForm(forms.ModelForm):  
+#     class Meta:  
+#         model = Review  
+#         fields = ('rating','comment')  
