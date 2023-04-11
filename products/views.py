@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from .forms import *
 from django.db.models import Avg
@@ -88,31 +88,34 @@ def detail(request,id):
 			return HttpResponse(result)
 
 
-def edit(request, id):  
+def edit(request, id):
     review = Review.objects.get(id=id)
-    if request.method == 'POST':
+    if request.method == "POST":
         product = review.product
         product_id = product.id
         review.id = id
-        #form = EmployeeForm(request.POST, instance = review)
-        review.rating = request.POST.get('rating', 3)
-        review.comment = request.POST.get('comment', 'good product')
-        review.date_time = date.today()        
+        # form = EmployeeForm(request.POST, instance = review)
+        review.rating = request.POST.get("rating", 3)
+        review.comment = request.POST.get("comment", "good product")
+        review.date_time = date.today()
         review.user = request.user
         if review.comment:
             review.save()
+            url = "/details/" + str(product_id)
             result = loadProduct(request, product_id)
-            return HttpResponse(result)
+            return HttpResponseRedirect(url, result)
     else:
-        return render(request, 'products/editReview.html', {'review': review})
+        return render(request, "products/editReview.html", {"review": review})
+
 
 def destroy(request, id):  
 	review = Review.objects.get(id=id)
 	product = review.product
 	product_id = product.id
 	review.delete()
+	redirect_url = '/details/'+str(product_id)
 	result=loadProduct(request, product_id)
-	return HttpResponse(result)
+	return HttpResponseRedirect(redirect_url, result)
 
 def loadProduct(request,id):
 
