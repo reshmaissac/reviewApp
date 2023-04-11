@@ -86,7 +86,7 @@ function closeNav() {
                 <p>Product Brand: {{ prod.brand }}</p>
 				<p>Product Cost: {{ prod.cost }}</p>
 				<p>Release date: {{ prod.release_date }}</p>
-				<p>Product rating:{{ average }}/10</p>
+				<p>Product rating:{{ average }}/5</p>
 				<p>Product description: {{ prod.description }}</p>
 				{% if request.user.is_authenticated %}
 					{% if request.user.is_superuser %}

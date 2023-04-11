@@ -121,14 +121,14 @@ def loadProduct(request,id):
 
 	if request.user.is_authenticated:
 		product=Product.objects.get(id=id)
-		""" reviews = Review.objects.filter(product=id).order_by("-comment")
+		reviews = Review.objects.filter(product=id).order_by("-comment")
 		average = reviews.aggregate(Avg("rating"))["rating__avg"]
 		if average == None:
 			average=0
 		else:
-			average = round(average,2) """
+			average = round(average,2)
 		reviews = "sample review"
-		average = 9
+		
 		context={
 			"prod":product,
 			"reviews":reviews,
