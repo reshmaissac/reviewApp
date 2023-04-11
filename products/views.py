@@ -6,7 +6,8 @@ from django.db.models import Avg
 from django.db.models import Q 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import date
-
+from django.contrib import messages
+from django.urls import reverse
 # function to list products and search products in home page
 def home(request):
 	query = request.GET.get("q")
@@ -51,6 +52,7 @@ def add_products(request):
 				form = ProductForm()
 			return render(request,'products/add_products.html',{"form":form,"controller":"Add Products"})
 		else:
+			messages.warning(request, 'Only admin can perform this task. Please login as admin.')
 			return redirect("products:home")
 	return redirect("users:login")
 
@@ -101,9 +103,7 @@ def edit(request, id):
         review.user = request.user
         if review.comment:
             review.save()
-            url = "/details/" + str(product_id)
-            result = loadProduct(request, product_id)
-            return HttpResponseRedirect(url, result)
+            return redirect(reverse('products:detail', kwargs={'id': product_id}))
     else:
         return render(request, "products/editReview.html", {"review": review})
 
@@ -113,9 +113,8 @@ def destroy(request, id):
 	product = review.product
 	product_id = product.id
 	review.delete()
-	redirect_url = '/details/'+str(product_id)
-	result=loadProduct(request, product_id)
-	return HttpResponseRedirect(redirect_url, result)
+	return redirect(reverse('products:detail', kwargs={'id': product_id}))
+	
 
 def loadProduct(request,id):
 
