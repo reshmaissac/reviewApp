@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from datetime import date
 
 # Create your models here.
 # Create your models here.
@@ -23,5 +25,7 @@ class Product(models.Model):
 
 class Review(models.Model):
     product=models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='reviews', on_delete=models.CASCADE, default=1)
     rating=models.IntegerField(default=0)
     comment=models.TextField()
+    date_time=models.DateField()
