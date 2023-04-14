@@ -4,21 +4,20 @@
   <div class="row">
     <div class="col-md-6">
       <img
-        src="https://via.placeholder.com/500x350.png?text=Product+Image"
+        src="{{prod.photo.url}}"
         alt="Product Image"
         class="img-fluid mb-4"
       />
     </div>
     <div class="col-md-6">
-      <h1>Product Name</h1>
-      <p class="lead mb-4">Brand/Manufacturer: Brand Name</p>
-      <p class="mb-4"><strong>Average Cost:</strong> $X</p>
-      <p class="mb-4"><strong>Category:</strong> Category Name</p>
-      <p class="mb-4"><strong>Date Released:</strong> DD/MM/YYYY</p>
+      <h1>{{ prod.name }}</h1>
+      <p class="lead mb-4">Brand/Manufacturer: {{ prod.brand }}</p>
+      <p class="mb-4"><strong>Average Cost:</strong> £{{ prod.cost }}</p>
+      <p class="mb-4"><strong>Category:</strong> {{ prod.category }}</p>
+      <p class="mb-4"><strong>Date Released:</strong> {{ prod.release_date }}</p>
+      <p class="mb-4"><strong>Average Rating:</strong> {{ average }}/5</p>
       <p>
-        Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis
-        quis feugiat dictum. Praesent nec nulla euismod, euismod eros at, faucibus mauris. Nunc ac
-        ex euismod, sodales lacus ut, consequat turpis.
+        Description: {{ prod.description }}
       </p>
       <a href="#" class="btn btn-primary">Add to Cart</a>
     </div>

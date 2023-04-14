@@ -56,14 +56,14 @@
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'products:home' %}">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Products</a>
-          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:home' %}">Products</a>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="#">About Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact Us</a>
+            <a class="nav-link" href="{% url 'home:contact' %}">Contact Us</a>
           </li>
           <li class="nav-item">
             <form action="{% url 'products:home' %}" method="get">
@@ -84,13 +84,19 @@
               >Account</a
             >
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#!">Profile</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="{% url 'users:register' %}">Register</a></li>
-              <li><a class="dropdown-item" href="{% url 'users:login' %}">Login</a></li>
-              <li><a class="dropdown-item" href="{% url 'api:fetch_products' %}">Import from API</a></li>
-              <li><a class="dropdown-item" href="{% url 'products:add_products' %}">Add Product</a></li>
-              <li><a class="dropdown-item" href="{% url 'users:logout' %}">logout</a></li>
+              {% if user.is_authenticated %}
+                <li><a class="dropdown-item" href="#!">Profile</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="{% url 'api:fetch_products' %}">Import from API</a></li>
+                <li><a class="dropdown-item" href="{% url 'products:add_products' %}">Add Product</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:logout' %}">logout</a></li>
+              {% else %}
+                <li><a class="dropdown-item" href="{% url 'users:register' %}">Register</a></li>
+                <li><a class="dropdown-item" href="{% url 'users:login' %}">Login</a></li>
+              {% endif %}
+             
+             
+              
             </ul>
           </li>
         </ul>
@@ -107,7 +113,10 @@
     <div class=>
     <div class="col-md-8">
       {% if messages %} {% for message in messages %}
-      <div class="alert alert-{{message.tags}}">{{message}}</div>
+      <div class="alert alert-{{message.tags}}">{{message}}
+        <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        
+      </div>
       {% endfor %} {% endif %}
     </div>
 

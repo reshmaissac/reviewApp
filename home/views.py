@@ -8,7 +8,7 @@ def about(request):
     return render(request, 'home/about.html', {'title': 'About Us'})
 
 def contact(request):
-    return render(request, 'home/contact.html', {'title': 'Contact Us'})
+    return render(request, 'home/contactUs.html', {'title': 'Contact Us'})
 
 def products(request):
     return render(request, 'products/product001.html', {'title': 'Products'})
