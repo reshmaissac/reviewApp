@@ -64,6 +64,13 @@ class ProductList(APIView):
     
     def get(self, request):
         # Return a list of all products
-        products = Product.objects.all()
-        serializer = ProductSerializer(products, many=True)
-        return Response(serializer.data)
+        url = 'https://fakestoreapi.com/products/category/electronics'
+        response = requests.get(url)
+        data = response.json()
+        serializer = ProductSerializer(data=data, many=True)
+
+        """ products = Product.objects.all()
+        serializer = ProductSerializer(products, many=True) """
+        if serializer.is_valid():
+            responseData = serializer.data
+        return Response(responseData)
