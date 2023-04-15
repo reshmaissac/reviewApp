@@ -88,7 +88,8 @@ def detail(request,id):
 			product = Product.objects.get(id=id)
 			result=loadProduct(request, id)
 			return HttpResponse(result)
-
+	else:
+		return redirect("users:login")
 
 def edit(request, id):
     review = Review.objects.get(id=id)
