@@ -20,8 +20,9 @@
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="{% static 'users_static/css/css.css' %}">
+    
     <!-- Bootstrap icons-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
@@ -38,7 +39,7 @@
   </head>
   <body>
     <!-- Navigation Section -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; width: 100%; left: 0cm; right: 0cm; top: 0;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index:100; position: fixed; width: 100%; left: 0cm; right: 0cm; top: 0; height: 60px;">
       <a class="navbar-brand" href="{% url 'products:home' %}">My E-commerce Website</a>
       <button
         class="navbar-toggler"
@@ -97,7 +98,7 @@
         </ul>
         <!-- Cart Icon -->
         <form class="d-flex">
-          <button class="btn btn-outline-light" type="submit">
+          <button class="btn btn-outline-light" type="submit" style="background-color: #0e9fcf;">
             <i class="bi-cart-fill me-1"></i>
             Cart
             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
@@ -117,7 +118,7 @@
     <br><br>
     {% block content %}{% endblock %}
     <!-- Footer Section -->
-    <footer class="bg-dark text-light py-3 footer" >
+    <footer class="bg-dark text-light py-3 footer" style="position:sticky; bottom: 0; width: 100%; height: 60px;">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
