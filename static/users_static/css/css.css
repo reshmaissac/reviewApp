@@ -6,7 +6,6 @@
   
   .password-reset-form {
     display: inline-block;
-    text-align: left;
   }
   
   .form-group {
@@ -82,7 +81,10 @@
   }
   
   .password-reset-complete-header {
-    margin-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
   }
   
   .password-reset-complete-header h1 {

@@ -3,25 +3,12 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <h4>Profile Picture</h4>
-            </div>
-            <div class="card-body">
-                {% if p_form.image.value %}
-                    <img src="{{ user.profile.image.url}}" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
-                {% else %}
-                    <img src="{{ request.user.profile.image.url }}" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
-                {% endif %}
-            </div>
-        </div>
-    </div>
+
     <div class="col-md-8">
-        <div class="card">
+        <div class="card" style="margin-top: 50px; margin-left: 350px; margin-bottom: 50px;">
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data">
+                    <img src="{{ user.profile.image.url}}" class="rounded-circle" style="max-width: 200px; max-height: 200px;">
                     {% csrf_token %}
                     <fieldset class="form-group">
                         <legend class="border-bottom mb-4">Profile Information</legend>
@@ -35,5 +22,4 @@
             </div>
         </div>
     </div>
-</div>
 {% endblock %}
