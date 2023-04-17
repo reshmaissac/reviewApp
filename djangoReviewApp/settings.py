@@ -95,22 +95,26 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-""" DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-} """
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reviewApp',
+        'NAME': 'review_app',
         'USER': 'root',
-        'PASSWORD': 'sqlpassword1',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306'
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'review_app',
+#         'USER': 'root',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
 
 
 
@@ -150,7 +154,7 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -162,5 +166,5 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'users:profile'
+LOGIN_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
