@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'review_app',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'HOST': '192.168.5.13',
         'PORT': '3306',
     }
 }
