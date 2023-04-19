@@ -2,9 +2,11 @@
 
 {% load crispy_forms_tags %}
 
+
+
 {% block content %}
-  <div class="wrapper" style="width: 50%; margin-left: 350px; margin-top: 50px; margin-bottom: 50px;">
-          <div class="card-header text-white" style="background-color: #0e9fcf;">My Ecommerce Website Login</div>
+  <div class="wrapper custom-card" style="width: 50%;">
+          <div class="card-header card-header-custom text-white">My Ecommerce Website Login</div>
           <div class="card-body">
             <form method="post">
               {% csrf_token %}

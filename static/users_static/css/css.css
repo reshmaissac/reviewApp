@@ -1,11 +1,14 @@
 
   
-  .password-reset-description {
+  .password-reset-confirm-description {
     margin-bottom: 30px;
+    text-align: center;
   }
   
-  .password-reset-form {
+  .password-reset-confirm-form {
     display: inline-block;
+    text-align: center; 
+    margin-left: 250px;
   }
   
   .form-group {
@@ -26,20 +29,14 @@
   }
   
   
-  
-
-
 
   .register-form{
     width: 50%; 
-    margin: 80px auto;
-    margin-left: 350px;
+    margin-left:350px !important;
+    margin-top: 50px  !important; 
   }
 
-
-
-
-  
+ 
   .wrapper {
     background-color: #f1f1f1;
     font-family: 'Open Sans', sans-serif;
@@ -53,20 +50,13 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
-  .email-sent-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  } 
+  
   .password-reset-done-body {
     font-size: 16px;
     margin-bottom: 20px;
   }
   
-  .email-sent-body {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
+  
   .btn {
     display: inline-block;
     background-color: #0e9fcf;
@@ -94,6 +84,12 @@
     margin-bottom: 20px;
     
   }
+
+  .password-reset-complete-wrapper{
+    width: 60% ;
+    margin-left:250px; 
+    margin-top: 50px;
+  }
   
   .password-reset-complete-header h1 {
     font-size: 32px;
@@ -109,4 +105,47 @@
     margin-bottom: 10px;
   }
   
-  
+  .media{
+    max-width: 200px ;
+    max-height: 200px ;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .custom-card{
+    margin-top: 50px; 
+    margin-left: 350px; 
+    margin-bottom: 50px;
+  }
+
+  .account-heading{
+    margin-left: 20px;
+  }
+
+  .password-reset-wrapper{
+    width:50%; 
+    margin-left: 350px;
+    margin-top: 50px;
+  }
+
+  .card-header-custom{
+    background-color: #0e9fcf;
+  }
+
+  .div-height-200{
+    height: 200px;
+  }
+
+  .password-reset-done-wrapper{
+    margin: 80px;
+  }
+  .password-reset-confirm-wrapper{
+    width: 80%; 
+    margin-left: 150px; 
+    margin-top: 50px; 
+    margin-bottom: 50px;
+  }
+
+  .password-reset-confirm-heading{
+    text-align: center;
+  }

@@ -13,6 +13,19 @@
         color: white;
         text-align: center;
       }
+
+      .message-container {
+        position: fixed;
+        z-index: 9999;
+        width: 100%;
+        top: 60px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 20px;
+        margin-left: 150px;
+      }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +35,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
       <link rel="stylesheet" href="{% static 'users_static/css/css.css' %}">
+      <link rel="stylesheet" href="{% static 'home_static/css/css.css' %}">
     
     <!-- Bootstrap icons-->
     <link
@@ -35,6 +49,8 @@
     />
   </head>
   <body>
+    
+      
     <!-- Navigation Section -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index:100; position: fixed; width: 100%; left: 0cm; right: 0cm; top: 0; height: 60px;">
       <a class="navbar-brand" href="{% url 'products:home' %}">My E-commerce Website</a>
@@ -109,7 +125,7 @@
       </div>
     </nav>
     <div class=>
-    <div class="col-md-8">
+    <div class="col-md-8 message-container">
       {% if messages %} {% for message in messages %}
       <div class="alert alert-{{message.tags}}">{{message}}
         <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

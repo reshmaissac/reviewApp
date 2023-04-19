@@ -3,10 +3,10 @@
 {% load crispy_forms_tags static %}
 
 {% block content %}
-  <div class="wrapper register-form" style="margin-left: 350px;">
+  <div class="wrapper register-form">
     <div class="row">
       <div class="col-md-12">
-        <div class="card-header text-white" style="background-color: #0e9fcf;"><h3>Register</h3></div>
+        <div class="card-header card-header-custom text-white"><h3>Register</h3></div>
         <div class="card-body">
         <form method="POST">
           {% csrf_token %}
