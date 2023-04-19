@@ -2,31 +2,16 @@
 
 {% load crispy_forms_tags %}
 
+
+
 {% block content %}
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header bg-primary text-white">My Ecommerce Website Login</div>
+  <div class="wrapper custom-card" style="width: 50%;">
+          <div class="card-header card-header-custom text-white">My Ecommerce Website Login</div>
           <div class="card-body">
-            {% if form.errors %}
-              <div class="alert alert-danger">
-                <strong>{{ form.errors }}</strong>
-              </div>
-            {% endif %}
             <form method="post">
               {% csrf_token %}
-              <div class="form-group">
-                {{ form.username|as_crispy_field }}
-              </div>
-              <div class="form-group">
-                {{ form.password|as_crispy_field }}
-              </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="{{ form.remember_me.id_for_label }}" name="{{ form.remember_me.name }}"{% if form.remember_me.value %} checked{% endif %}>
-                <label class="form-check-label" for="{{ form.remember_me.id_for_label }}">Remember Me</label>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              {{ form|crispy }}
+              <button type="submit" class="btn">Sign In</button>
             </form>
           </div>
           <div class="card-footer">
@@ -37,6 +22,5 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
 {% endblock %}

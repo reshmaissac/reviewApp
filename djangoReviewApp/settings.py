@@ -155,7 +155,7 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -167,5 +167,5 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = 'users:profile'
+LOGIN_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
