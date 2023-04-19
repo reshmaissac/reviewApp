@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Avg
@@ -14,7 +14,7 @@ def home(request):
 	allproducts = None
 	if query:
 		allproducts = Product.objects.filter(
-			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__icontains=query))
+			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__name__icontains=query))
 		#(name__icontains=query).filter(brand__icontains=query).filter(category__icontains=query)
 	else:	
 		allproducts = Product.objects.all().order_by('id')

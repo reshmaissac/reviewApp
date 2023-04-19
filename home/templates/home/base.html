@@ -56,7 +56,7 @@
       
     <!-- Navigation Section -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="z-index:100; position: fixed; width: 100%; left: 0cm; right: 0cm; top: 0; height: 60px;">
-      <a class="navbar-brand" href="{% url 'products:home' %}">My E-commerce Website</a>
+      <a class="navbar-brand" href="{% url 'products:home' %}">ShopGenovia Products Review</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -102,7 +102,6 @@
             >
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               {% if user.is_authenticated %}
-                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
                 <li><a class="dropdown-item" href="{% url 'users:profile' %}">Profile</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="{% url 'api:fetch_products' %}">Import from API</a></li>
