@@ -1,4 +1,5 @@
-{% extends "home/base.html" %} {% block content %} <br /><br />
+{% extends "home/base.html" %} 
+{% block content %} <br /><br />
 <!-- Product Section -->
 <section class="container py-5">
   <div class="row">
@@ -28,80 +29,45 @@
   <h2>User Reviews</h2>
   <div class="d-flex justify-content-end">
     <button type="button" class="btn btn-success mx-1">Add Review</button>
+        {% if request.user.is_authenticated %}
+          <form method="post" action=".">
+            {%csrf_token%}
+            <div>
+              <label>Rating</label>
+              <select name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div><br>
+            <div>
+              <label>Comment</label><br>
+              <textarea name="comment"></textarea>
+            </div><br>
+            <div>
+              <button>Submit</button>
+            </div>
+          </form>
+        {%endif%}
   </div>
+
+  {% for review in prod.reviews.all%}
   <div class="row">
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Review Title</h4>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <div class="ratings">
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star"></i>
-          </div>
+          <h6 class="card-title">{{review.comment}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">by {{ review.user.username}}</h6>
+          <strong>Rating : </strong>{{ review.rating}}/5<br>
           <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary mx-2">View More</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Review Title</h4>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <div class="ratings">
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary mx-2">View More</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Review Title</h4>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <div class="ratings">
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary mx-2">View More</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Review Title</h4>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <div class="ratings">
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star rating-color"></i>
-            <i class="fa fa-star"></i>
-          </div>
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary mx-2">View More</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  {% endfor %}
+
 </section>
 {% endblock %}
