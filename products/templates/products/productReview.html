@@ -15,33 +15,35 @@
   <h2>User Reviews</h2>
   <!-- Review Box -->
   <div class="row">
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">{{review.rating}}</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}} </h6>
-          <p class="card-text">
-            {{review.comment}}
-          </p>
-          {% if review.user.id == request.user.id %}
-          <div class="d-flex justify-content-end">
-            <a href="/edit/{{ review.id }}" class="btn btn-primary mr-2"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
-            <a href="/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
-          </div>
-          {% endif %}
-        </div>
-      </div>
+    <div class="col-md-4">
+     
+      <img class="rounded-circle account-img media" src="{{review.user.profile.image.url}}">
     </div>
-    
-    
-    
+    <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h4 class="card-title mb-0">Review</h4>
+              <div class="d-flex align-items-center">
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                <span class="ml-2">{{review.rating}}/5</span>
+              </div>
+            </div>
+            <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}} </h6>
+            <p class="card-text">
+              {{review.comment}}
+            </p>
+            {% if review.user.id == request.user.id %}
+            <div class="d-flex justify-content-end">
+              <a href="/edit/{{ review.id }}" class="btn btn-primary mr-2"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+              <a href="/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      
+    </div>
+    <!-- Review -->
     
   </div>
 </section>
