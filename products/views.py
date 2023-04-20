@@ -64,10 +64,10 @@ def allreviews(request, id):
 def detail(request,id):
 
 	if request.user.is_authenticated:
-
+		
 		if request.method == "POST":
 			product=Product.objects.get(id=id)
-			rating= request.POST.get('rating',3)
+			rating= request.POST.get('rating','')
 			comment=request.POST.get('comment','')
 			current_user= request.user
 			user_id=current_user.id
@@ -98,8 +98,8 @@ def edit(request, id):
         product_id = product.id
         review.id = id
         # form = EmployeeForm(request.POST, instance = review)
-        review.rating = request.POST.get("rating", 3)
-        review.comment = request.POST.get("comment", "good product")
+        review.rating = request.POST.get("rating", '')
+        review.comment = request.POST.get("comment", '')
         review.date_time = date.today()
         review.user = request.user
         if review.comment:
@@ -127,7 +127,7 @@ def loadProduct(request,id):
 			average=0
 		else:
 			average = round(average,2)
-		reviews = "sample review"
+		
 		
 		context={
 			"prod":product,
@@ -135,7 +135,7 @@ def loadProduct(request,id):
 			"average":average,
 		}
 					
-		return render(request,'products/details.html',context)
+		return render(request,'products/product001.html',context)
 	
 def loadReviews(request,id):
 
@@ -148,4 +148,16 @@ def loadReviews(request,id):
 					
 		return render(request,'products/allReviews.html',context)	
 	
-	
+def viewReview(request,id):
+
+	if request.user.is_authenticated:
+		review=Review.objects.get(id=id)
+		product = review.product
+		product_id = product.id
+		
+		
+        
+		return render(request, "products/productReview.html", {"review": review, "product": product})
+		
+	else:
+		return redirect("users:login")	
