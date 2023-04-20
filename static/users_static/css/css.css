@@ -1,0 +1,151 @@
+
+  
+  .password-reset-confirm-description {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .password-reset-confirm-form {
+    display: inline-block;
+    text-align: center; 
+    margin-left: 250px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  
+
+  .register-form{
+    width: 50%; 
+    margin-left:350px !important;
+    margin-top: 50px  !important; 
+  }
+
+ 
+  .wrapper {
+    background-color: #f1f1f1;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .password-reset-done-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .password-reset-done-body {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .btn {
+    display: inline-block;
+    background-color: #0e9fcf;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .password-reset-complete {
+    margin: 50px auto;
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .password-reset-complete-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+  }
+
+  .password-reset-complete-wrapper{
+    width: 60% ;
+    margin-left:250px; 
+    margin-top: 50px;
+  }
+  
+  .password-reset-complete-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .password-reset-complete-body {
+    margin-bottom: 30px;
+    font-size: 20px;
+  }
+  
+  .password-reset-complete-body p {
+    margin-bottom: 10px;
+  }
+  
+  .media{
+    max-width: 200px ;
+    max-height: 200px ;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  .custom-card{
+    margin-top: 50px; 
+    margin-left: 350px; 
+    margin-bottom: 50px;
+  }
+
+  .account-heading{
+    margin-left: 20px;
+  }
+
+  .password-reset-wrapper{
+    width:50%; 
+    margin-left: 350px;
+    margin-top: 50px;
+  }
+
+  .card-header-custom{
+    background-color: #0e9fcf;
+  }
+
+  .div-height-200{
+    height: 200px;
+  }
+
+  .password-reset-done-wrapper{
+    margin: 80px;
+  }
+  .password-reset-confirm-wrapper{
+    width: 80%; 
+    margin-left: 150px; 
+    margin-top: 50px; 
+    margin-bottom: 50px;
+  }
+
+  .password-reset-confirm-heading{
+    text-align: center;
+  }

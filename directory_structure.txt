@@ -1,0 +1,372 @@
+.
+├── Pipfile
+├── README.md
+├── db.sqlite3
+├── directory_structure.txt
+├── djangoReviewApp
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── home
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   └── home
+│   │       ├── base.html
+│   │       ├── css
+│   │       │   └── styles.css
+│   │       ├── home.html
+│   │       └── img
+│   │           └── test1.jpg
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── manage.py
+├── media
+│   ├── default.jpg
+│   ├── product_pics
+│   │   ├── lg.jpg
+│   │   ├── lg_8DB9zaB.jpg
+│   │   ├── lg_IlREaRn.jpg
+│   │   ├── lg_MhcLP6X.jpg
+│   │   ├── samsung_s22.jpg
+│   │   ├── samsung_s22_CgbbABI.jpg
+│   │   ├── samsung_s22_JsOWgft.jpg
+│   │   ├── samsung_s22_P4IQNpV.jpg
+│   │   └── samsung_s22_SfmurNn.jpg
+│   ├── profile_pics
+│   │   ├── default.jpg
+│   │   ├── default.png
+│   │   ├── pexels-pixabay-38544.jpg
+│   │   ├── pexels-pixabay-38544_9EbCF4i.jpg
+│   │   ├── pexels-pixabay-38544_LwerlQK.jpg
+│   │   ├── pexels-pixabay-38544_RaCrmCF.jpg
+│   │   ├── pexels-pixabay-38544_VY6UipE.jpg
+│   │   ├── pexels-pixabay-38544_hGdaGnb.jpg
+│   │   ├── pexels-pixabay-38544_hO2O9du.jpg
+│   │   └── pexels-pixabay-38544_zlITAuJ.jpg
+│   └── shopping.jpg
+├── products
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── forms.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_alter_product_photo.py
+│   │   ├── 0003_remove_product_size_alter_product_id.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── templates
+│   │   └── products
+│   │       ├── add_products.html
+│   │       ├── css
+│   │       │   └── styles.css
+│   │       ├── details.html
+│   │       ├── product001.html
+│   │       └── productOld.html
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── static
+│   ├── admin
+│   │   ├── css
+│   │   │   ├── autocomplete.css
+│   │   │   ├── autocomplete.css.gz
+│   │   │   ├── base.css
+│   │   │   ├── base.css.gz
+│   │   │   ├── changelists.css
+│   │   │   ├── changelists.css.gz
+│   │   │   ├── dark_mode.css
+│   │   │   ├── dark_mode.css.gz
+│   │   │   ├── dashboard.css
+│   │   │   ├── dashboard.css.gz
+│   │   │   ├── fonts.css
+│   │   │   ├── fonts.css.gz
+│   │   │   ├── forms.css
+│   │   │   ├── forms.css.gz
+│   │   │   ├── login.css
+│   │   │   ├── login.css.gz
+│   │   │   ├── nav_sidebar.css
+│   │   │   ├── nav_sidebar.css.gz
+│   │   │   ├── responsive.css
+│   │   │   ├── responsive.css.gz
+│   │   │   ├── responsive_rtl.css
+│   │   │   ├── responsive_rtl.css.gz
+│   │   │   ├── rtl.css
+│   │   │   ├── rtl.css.gz
+│   │   │   ├── vendor
+│   │   │   │   └── select2
+│   │   │   │       ├── LICENSE-SELECT2.md
+│   │   │   │       ├── LICENSE-SELECT2.md.gz
+│   │   │   │       ├── select2.css
+│   │   │   │       ├── select2.css.gz
+│   │   │   │       ├── select2.min.css
+│   │   │   │       └── select2.min.css.gz
+│   │   │   ├── widgets.css
+│   │   │   └── widgets.css.gz
+│   │   ├── fonts
+│   │   │   ├── LICENSE.txt
+│   │   │   ├── LICENSE.txt.gz
+│   │   │   ├── README.txt
+│   │   │   ├── README.txt.gz
+│   │   │   ├── Roboto-Bold-webfont.woff
+│   │   │   ├── Roboto-Light-webfont.woff
+│   │   │   └── Roboto-Regular-webfont.woff
+│   │   ├── img
+│   │   │   ├── LICENSE
+│   │   │   ├── LICENSE.gz
+│   │   │   ├── README.txt
+│   │   │   ├── README.txt.gz
+│   │   │   ├── calendar-icons.svg
+│   │   │   ├── calendar-icons.svg.gz
+│   │   │   ├── gis
+│   │   │   │   ├── move_vertex_off.svg
+│   │   │   │   ├── move_vertex_off.svg.gz
+│   │   │   │   ├── move_vertex_on.svg
+│   │   │   │   └── move_vertex_on.svg.gz
+│   │   │   ├── icon-addlink.svg
+│   │   │   ├── icon-addlink.svg.gz
+│   │   │   ├── icon-alert.svg
+│   │   │   ├── icon-alert.svg.gz
+│   │   │   ├── icon-calendar.svg
+│   │   │   ├── icon-calendar.svg.gz
+│   │   │   ├── icon-changelink.svg
+│   │   │   ├── icon-changelink.svg.gz
+│   │   │   ├── icon-clock.svg
+│   │   │   ├── icon-clock.svg.gz
+│   │   │   ├── icon-deletelink.svg
+│   │   │   ├── icon-deletelink.svg.gz
+│   │   │   ├── icon-no.svg
+│   │   │   ├── icon-no.svg.gz
+│   │   │   ├── icon-unknown-alt.svg
+│   │   │   ├── icon-unknown-alt.svg.gz
+│   │   │   ├── icon-unknown.svg
+│   │   │   ├── icon-unknown.svg.gz
+│   │   │   ├── icon-viewlink.svg
+│   │   │   ├── icon-viewlink.svg.gz
+│   │   │   ├── icon-yes.svg
+│   │   │   ├── icon-yes.svg.gz
+│   │   │   ├── inline-delete.svg
+│   │   │   ├── inline-delete.svg.gz
+│   │   │   ├── search.svg
+│   │   │   ├── search.svg.gz
+│   │   │   ├── selector-icons.svg
+│   │   │   ├── selector-icons.svg.gz
+│   │   │   ├── sorting-icons.svg
+│   │   │   ├── sorting-icons.svg.gz
+│   │   │   ├── tooltag-add.svg
+│   │   │   ├── tooltag-add.svg.gz
+│   │   │   ├── tooltag-arrowright.svg
+│   │   │   └── tooltag-arrowright.svg.gz
+│   │   └── js
+│   │       ├── SelectBox.js
+│   │       ├── SelectBox.js.gz
+│   │       ├── SelectFilter2.js
+│   │       ├── SelectFilter2.js.gz
+│   │       ├── actions.js
+│   │       ├── actions.js.gz
+│   │       ├── admin
+│   │       │   ├── DateTimeShortcuts.js
+│   │       │   ├── DateTimeShortcuts.js.gz
+│   │       │   ├── RelatedObjectLookups.js
+│   │       │   └── RelatedObjectLookups.js.gz
+│   │       ├── autocomplete.js
+│   │       ├── autocomplete.js.gz
+│   │       ├── calendar.js
+│   │       ├── calendar.js.gz
+│   │       ├── cancel.js
+│   │       ├── cancel.js.gz
+│   │       ├── change_form.js
+│   │       ├── change_form.js.gz
+│   │       ├── collapse.js
+│   │       ├── collapse.js.gz
+│   │       ├── core.js
+│   │       ├── core.js.gz
+│   │       ├── filters.js
+│   │       ├── filters.js.gz
+│   │       ├── inlines.js
+│   │       ├── inlines.js.gz
+│   │       ├── jquery.init.js
+│   │       ├── jquery.init.js.gz
+│   │       ├── nav_sidebar.js
+│   │       ├── nav_sidebar.js.gz
+│   │       ├── popup_response.js
+│   │       ├── popup_response.js.gz
+│   │       ├── prepopulate.js
+│   │       ├── prepopulate.js.gz
+│   │       ├── prepopulate_init.js
+│   │       ├── prepopulate_init.js.gz
+│   │       ├── urlify.js
+│   │       ├── urlify.js.gz
+│   │       └── vendor
+│   │           ├── jquery
+│   │           │   ├── LICENSE.txt
+│   │           │   ├── LICENSE.txt.gz
+│   │           │   ├── jquery.js
+│   │           │   ├── jquery.js.gz
+│   │           │   ├── jquery.min.js
+│   │           │   └── jquery.min.js.gz
+│   │           ├── select2
+│   │           │   ├── LICENSE.md
+│   │           │   ├── LICENSE.md.gz
+│   │           │   ├── i18n
+│   │           │   │   ├── af.js
+│   │           │   │   ├── af.js.gz
+│   │           │   │   ├── ar.js
+│   │           │   │   ├── ar.js.gz
+│   │           │   │   ├── az.js
+│   │           │   │   ├── az.js.gz
+│   │           │   │   ├── bg.js
+│   │           │   │   ├── bg.js.gz
+│   │           │   │   ├── bn.js
+│   │           │   │   ├── bn.js.gz
+│   │           │   │   ├── bs.js
+│   │           │   │   ├── bs.js.gz
+│   │           │   │   ├── ca.js
+│   │           │   │   ├── ca.js.gz
+│   │           │   │   ├── cs.js
+│   │           │   │   ├── cs.js.gz
+│   │           │   │   ├── da.js
+│   │           │   │   ├── da.js.gz
+│   │           │   │   ├── de.js
+│   │           │   │   ├── de.js.gz
+│   │           │   │   ├── dsb.js
+│   │           │   │   ├── dsb.js.gz
+│   │           │   │   ├── el.js
+│   │           │   │   ├── el.js.gz
+│   │           │   │   ├── en.js
+│   │           │   │   ├── en.js.gz
+│   │           │   │   ├── es.js
+│   │           │   │   ├── es.js.gz
+│   │           │   │   ├── et.js
+│   │           │   │   ├── et.js.gz
+│   │           │   │   ├── eu.js
+│   │           │   │   ├── eu.js.gz
+│   │           │   │   ├── fa.js
+│   │           │   │   ├── fa.js.gz
+│   │           │   │   ├── fi.js
+│   │           │   │   ├── fi.js.gz
+│   │           │   │   ├── fr.js
+│   │           │   │   ├── fr.js.gz
+│   │           │   │   ├── gl.js
+│   │           │   │   ├── gl.js.gz
+│   │           │   │   ├── he.js
+│   │           │   │   ├── he.js.gz
+│   │           │   │   ├── hi.js
+│   │           │   │   ├── hi.js.gz
+│   │           │   │   ├── hr.js
+│   │           │   │   ├── hr.js.gz
+│   │           │   │   ├── hsb.js
+│   │           │   │   ├── hsb.js.gz
+│   │           │   │   ├── hu.js
+│   │           │   │   ├── hu.js.gz
+│   │           │   │   ├── hy.js
+│   │           │   │   ├── hy.js.gz
+│   │           │   │   ├── id.js
+│   │           │   │   ├── id.js.gz
+│   │           │   │   ├── is.js
+│   │           │   │   ├── is.js.gz
+│   │           │   │   ├── it.js
+│   │           │   │   ├── it.js.gz
+│   │           │   │   ├── ja.js
+│   │           │   │   ├── ja.js.gz
+│   │           │   │   ├── ka.js
+│   │           │   │   ├── ka.js.gz
+│   │           │   │   ├── km.js
+│   │           │   │   ├── km.js.gz
+│   │           │   │   ├── ko.js
+│   │           │   │   ├── ko.js.gz
+│   │           │   │   ├── lt.js
+│   │           │   │   ├── lt.js.gz
+│   │           │   │   ├── lv.js
+│   │           │   │   ├── lv.js.gz
+│   │           │   │   ├── mk.js
+│   │           │   │   ├── mk.js.gz
+│   │           │   │   ├── ms.js
+│   │           │   │   ├── ms.js.gz
+│   │           │   │   ├── nb.js
+│   │           │   │   ├── nb.js.gz
+│   │           │   │   ├── ne.js
+│   │           │   │   ├── ne.js.gz
+│   │           │   │   ├── nl.js
+│   │           │   │   ├── nl.js.gz
+│   │           │   │   ├── pl.js
+│   │           │   │   ├── pl.js.gz
+│   │           │   │   ├── ps.js
+│   │           │   │   ├── ps.js.gz
+│   │           │   │   ├── pt-BR.js
+│   │           │   │   ├── pt-BR.js.gz
+│   │           │   │   ├── pt.js
+│   │           │   │   ├── pt.js.gz
+│   │           │   │   ├── ro.js
+│   │           │   │   ├── ro.js.gz
+│   │           │   │   ├── ru.js
+│   │           │   │   ├── ru.js.gz
+│   │           │   │   ├── sk.js
+│   │           │   │   ├── sk.js.gz
+│   │           │   │   ├── sl.js
+│   │           │   │   ├── sl.js.gz
+│   │           │   │   ├── sq.js
+│   │           │   │   ├── sq.js.gz
+│   │           │   │   ├── sr-Cyrl.js
+│   │           │   │   ├── sr-Cyrl.js.gz
+│   │           │   │   ├── sr.js
+│   │           │   │   ├── sr.js.gz
+│   │           │   │   ├── sv.js
+│   │           │   │   ├── sv.js.gz
+│   │           │   │   ├── th.js
+│   │           │   │   ├── th.js.gz
+│   │           │   │   ├── tk.js
+│   │           │   │   ├── tk.js.gz
+│   │           │   │   ├── tr.js
+│   │           │   │   ├── tr.js.gz
+│   │           │   │   ├── uk.js
+│   │           │   │   ├── uk.js.gz
+│   │           │   │   ├── vi.js
+│   │           │   │   ├── vi.js.gz
+│   │           │   │   ├── zh-CN.js
+│   │           │   │   ├── zh-CN.js.gz
+│   │           │   │   ├── zh-TW.js
+│   │           │   │   └── zh-TW.js.gz
+│   │           │   ├── select2.full.js
+│   │           │   ├── select2.full.js.gz
+│   │           │   ├── select2.full.min.js
+│   │           │   └── select2.full.min.js.gz
+│   │           └── xregexp
+│   │               ├── LICENSE.txt
+│   │               ├── LICENSE.txt.gz
+│   │               ├── xregexp.js
+│   │               ├── xregexp.js.gz
+│   │               ├── xregexp.min.js
+│   │               └── xregexp.min.js.gz
+│   └── users_static
+│       └── images
+│           └── gadget.jpg
+└── users
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── forms.py
+    ├── migrations
+    │   ├── 0001_initial.py
+    │   ├── 0002_profile_address_profile_city_profile_country_and_more.py
+    │   └── __init__.py
+    ├── models.py
+    ├── templates
+    │   └── users
+    │       ├── login.html
+    │       ├── logout.html
+    │       ├── profile.html
+    │       └── register.html
+    ├── tests.py
+    ├── urls.py
+    └── views.py
+
+36 directories, 333 files

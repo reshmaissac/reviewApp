@@ -1,30 +1,38 @@
-{% extends "home/base.html" %}
-{% block content %}
-  <body>
-    <!-- Header Section -->
-    <header class="bg-light p-5">
-      <h1>Welcome to My E-commerce Website</h1>
-      <p class="lead">Browse our selection of high-quality products</p>
-      <!-- <a href="#" class="btn btn-primary btn-lg">Shop Now</a> -->
-    </header>
-    <!-- Products Section -->
-    <section class="container py-5">
-      <h2 class="mb-4">Our Products</h2>
-      <div class="row">
-        {% for p in product %}
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            
-            <img src="{{ p.photo.url }}" alt="Image" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">{{ p.name }}</h5>
-              <p class="card-text">{{ p.description }}</p>
-              <a href="{% url 'products:detail' p.id %}" class="btn btn-primary">View Product</a>
-            </div>
+{% extends "home/base.html" %} {% block content %}
+<body>
+  <!-- Header Section -->
+  <header class="bg-light p-5">
+    <h1>Welcome to ShopGenovia</h1>
+    <p class="lead">Review our selection of high-quality products</p>
+    <!-- <a href="#" class="btn btn-primary btn-lg">Shop Now</a> -->
+  </header>
+  <!-- Products Section -->
+  <section class="container py-5">
+    <h2 class="mb-4">Our Products</h2>
+    <div class="row">
+      {% for p in page_obj.object_list %}
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <img src="{{ p.photo.url }}" alt="Image" class="card-img-top" />
+          <div class="card-body">
+            <h5 class="card-title">{{ p.name }}</h5>
+            <p class="card-text">{{ p.description }}</p>
+            <a href="{% url 'products:detail' p.id %}" class="btn btn-primary">View Product</a>
           </div>
         </div>
-        {% endfor %}
-        </div>
-      </section>
-{% endblock %}
-            
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center">
+      {%if page_obj.has_previous %} {# whether the previous page exists #}
+          <a href="?page={{page_obj.previous_page_number}}"><</a> {# link to the prev page #}
+      {% endif %}
+      <span>{{page_obj.number}}</span> {# the current page number #}
+      
+      {%if page_obj.has_next %} {# whether the next page exists #}
+          <a href="?page={{page_obj.next_page_number}}">></a> {# link to the next page #}
+      {% endif %}
+    </div>
+  </section>
+  {% endblock %}
+</body>
