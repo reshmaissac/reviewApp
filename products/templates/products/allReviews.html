@@ -1,0 +1,31 @@
+{% extends "home/base.html" %}
+{% block content %}
+<html>
+    <br>
+<h2>Reviews</h2>
+<br>
+<div id="reviews" style="width: 100%; padding: 50px; background-color: #dfe3eb; border-radius: 5px; " >
+{% for review in prod.reviews.all%}
+	{% if review.user.id == request.user.id %}
+	<div id="displayReview">
+		<strong>User : </strong>{{ review.user.username}} <strong>date: </strong>{{ review.date_time}}<br>
+		<strong>Rating : </strong>{{ review.rating}}/5<br>
+		<strong>Comment : </strong>{{review.comment}}<br>
+		<a href="/edit/{{ review.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+        <a href="/delete/{{ review.id }}">Delete</a>
+
+	</div><br><br>
+	{% endif %}
+	{% if review.user.id != request.user.id %}
+	<div id="displayReview1">
+		<strong>User : </strong>{{ review.user.username}} <strong>date: </strong>{{ review.date_time}}<br>
+		<strong>Rating : </strong>{{ review.rating}}/5<br>
+		<strong>Comment : </strong>{{review.comment}}<br>
+
+	</div><br><br>
+	{% endif %}
+{% endfor %}
+
+</div></div>
+</html>
+{% endblock %}

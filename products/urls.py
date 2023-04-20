@@ -7,9 +7,13 @@ app_name = "products"
 urlpatterns = [
     path('', views.home, name='home'),
     path('details/<int:id>/',views.detail,name="detail"),
+    path('allreviews/<int:id>/',views.allreviews,name="allreviews"),
     path('addproducts/',views.add_products,name="add_products"),
-   # path('editproducts/<int:id>/',views.edit_products,name="edit_products"),
-    # path('deleteproducts/<int:id>/',views.delete_products,name="delete_products"),
+
+    
+    path('edit/<int:id>', views.edit), 
+    path('delete/<int:id>', views.destroy), 
+    
    
 
 

@@ -1,72 +1,10 @@
 {% extends "home/base.html" %}
 {% block content %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
 </head>
 <body>
-<br>
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Catogories</span>
-
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
 
 <div class="container">
 	<div style="width: 100%; padding: 10px; border: 10px;">
@@ -86,7 +24,7 @@ function closeNav() {
                 <p>Product Brand: {{ prod.brand }}</p>
 				<p>Product Cost: {{ prod.cost }}</p>
 				<p>Release date: {{ prod.release_date }}</p>
-				<p>Product rating:{{ average }}/10</p>
+				<p>Product rating:{{ average }}/5</p>
 				<p>Product description: {{ prod.description }}</p>
 				{% if request.user.is_authenticated %}
 					{% if request.user.is_superuser %}
@@ -128,54 +66,19 @@ function closeNav() {
 </div>
 <br>
 <div style="width: 100%; padding-top: 10px; padding: 50px; background-color: #dfe3eb; border-radius: 5px;">
-<h2>Reviews</h2>
+<h2>Reviews</h2><br>
 {% for review in prod.reviews.all%}
 	<div id="displayReview">
+		<strong>User : </strong>{{ review.user.username}} <strong>date: </strong>{{ review.date_time}}<br>
 		<strong>Rating : </strong>{{ review.rating}}/5<br>
-		<strong>Comment : </strong>
-		{{review.comment}}
-
-	</div><br><br>
-
+		<strong>Comment : </strong>{{review.comment}}<br>
+	</div><br>
+	
 {% endfor %}
 
+<a href="/allreviews/{{ prod.id}} " class="btn btn-primary">All Reviews</a>
 </div>
-
-<!-- <div class="card">
-	<div class="card=-body">
-		<h3 class="text-center">Reviews</h3>
-		<form action=" " method="POST">
-			{% csrf_token %}
-			<label for="comment">Review</label>
-			<textarea name="comment" id="comment" cols="30" rows="5" class="form-control"></textarea>
-			<label for="rating">Rating</label>
-			<input type="range" id="rangeInput" name="rating" min="0" max="10" value="0" step="0.5" oninput="amount.value=rangeInput.value">
-			<output name="amount" id="amount" for="rangeInput">0</output>
-			<br>
-			<input type="submit" class="btn btn-danger" value="Add Review">
-		</form>
-	</div></div> -->
 	<br>
-
-	<!-- <div class="card" style="background-color: black;">
-		<div class="card-body" style="background:white;">
-			<h3 class="text-center">Reviews</h3>
-			{% for review in reviews %}
-			<div class="row">
-				<div class="col-md-3">
-					<h5 class="test-left">{{ review.user.username }}</h5>
-					<h5>{{ review.rating }}</h5>
-					{% if request.user == review.user %} -->
-					<!-- <a href="{% url 'main:edit_review' prod.id review.id %}">Edit</a>
-					<a href="{% url 'main:delete_review' prod.id review.id %}" onclick="return confirm('Are you sure want to delete this?');">Delete</a> -->
-					<!--{% endif %}
-				</div>
-				<div class="col-md-9">
-					<p>{{ review.comment }}</p>
-				</div>
-			</div>
-	<br>
-	{% endfor %}</div></div> -->
 </div>
 </div>
 {% endblock %}
