@@ -16,3 +16,47 @@
     font-size: 16px;
     margin-bottom: 20px;
   }
+
+  h1, .h1 { /*THIS IS FOR THE HEADERS TITLE CAN CUSTOMISE ANYTIME*/
+    font-size: 3rem;
+    color: rgb(78, 91, 94);
+  }
+
+  h2, .h2 { /*THIS IS THE CONTACT PAGES HEADING FOR CONTACT US*/
+    font-size: 2.5rem;
+    color: black;
+  }
+
+  .p-5{ /*THIS IS THE PADDING FOR THE WELCOME PAGE AND THE NAVIGATION BAR */
+    padding: 1.5rem !important;
+    text-align: center;
+  }
+
+  p.lead{ /*THIS IS UNDER THE H1 HEADER */
+    font-size: 1.5rem;
+  }
+
+ .bg-dark{ /*COLOUR OF THE NAVIGATION BACKGROUNF */
+  background-color: rgb(92, 109, 116) !important;
+ }
+
+ .container{ /*THIS IS THE CONTAINER THAT HOLDS THE PRODUCTS FROM THE HOMEPAGE*/
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+ }
+
+ .col-md-4{ /*THIS IS FOR THE SPACING BETWEEN THE PRODUCTS OUTLINE BOXS AND TO SPERATE AND ALSO CLOSE THEM WHATEER YOU CHOOSE*/
+  position: relative;
+  width: 100%;
+  padding-right: auto;
+  padding-left: auto;
+ }
+
+ .pt-5, .py-5{
+  padding: 2.5rem;
+  padding-bottom: 2rem !important;
+ }

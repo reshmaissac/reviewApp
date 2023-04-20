@@ -98,7 +98,7 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reviewApp',
+        'NAME': 'review_app',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST': '192.168.5.13',
