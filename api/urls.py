@@ -8,6 +8,6 @@ app_name = "api"
 urlpatterns = [
     # other URL patterns...
     #path('api/', include(router.urls)),
-     path('fetch-products/', ProductList.as_view(), name='fetch_products'),
+     path('api-products/', ProductList.as_view(), name='fetch_products'),
      path('get-fakestore-data/', get_fakestore_data, name='get_fakestore_data'),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
