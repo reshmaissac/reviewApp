@@ -1,4 +1,4 @@
-{% extends "home/base.html" %} {% block content %} <br /><br />
+{% extends "home/base.html" %} {% block content %} <br />
 <!-- Product Section -->
 <section class="container py-5">
   <div class="row">
@@ -10,6 +10,7 @@
       />
     </div>
     <div class="col-md-6">
+      <br><br>
       <h1>{{ prod.name }}</h1>
       <p class="lead mb-4">Brand/Manufacturer: {{ prod.brand }}</p>
       <p class="mb-4"><strong>Average Cost:</strong> £{{ prod.cost }}</p>
@@ -25,9 +26,9 @@
 </section>
 <!-- User Reviews Section -->
 <section class="container py-5">
-  <h2>User Reviews</h2>
+  
   <div class="d-flex justify-content-end">
-    <div id="reviews" style="height:50%; width: 100%; padding: 50px; background-color: #dfe3eb; border-radius: 5px; " >
+    <div id="reviews" style="height:50%; width: 100%; padding: 50px; background-color: #f3f3f3; border-radius: 5px; " >
       <h2>Rate the Product</h2>
     {% if request.user.is_authenticated %}
     <form method="post" action=".">
@@ -41,11 +42,11 @@
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-      </div><br>
+      </div>
       <div>
-        <label>Comment</label><br>
-        <textarea name="comment"></textarea>
-      </div><br>
+        <label>Comment</label>
+        <textarea style="width: 60%;"name="comment"></textarea>
+      </div>
       <div>
         <button>Submit</button>
       </div>
@@ -55,6 +56,9 @@
     </div>
     
   </div>
+
+  <br><br>
+  <h2>User Reviews</h2><br>
   <div class="row">
     {% for review in prod.reviews.all%}
     <div class="col-md-6 mb-4">
