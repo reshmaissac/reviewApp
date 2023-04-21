@@ -1,5 +1,7 @@
+import requests
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from .serializers import ProductSerializer
+from django.http import HttpResponse
 from .models import *
 from .forms import *
 from django.db.models import Avg
@@ -8,13 +10,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import date
 from django.contrib import messages
 from django.urls import reverse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer
 # function to list products and search products in home page
 def home(request):
 	query = request.GET.get("q")
 	allproducts = None
 	if query:
 		allproducts = Product.objects.filter(
-			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__icontains=query))
+			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__name__icontains=query))
 		#(name__icontains=query).filter(brand__icontains=query).filter(category__icontains=query)
 	else:	
 		allproducts = Product.objects.all().order_by('id')
@@ -64,10 +70,10 @@ def allreviews(request, id):
 def detail(request,id):
 
 	if request.user.is_authenticated:
-
+		
 		if request.method == "POST":
 			product=Product.objects.get(id=id)
-			rating= request.POST.get('rating',3)
+			rating= request.POST.get('rating','')
 			comment=request.POST.get('comment','')
 			current_user= request.user
 			user_id=current_user.id
@@ -98,8 +104,8 @@ def edit(request, id):
         product_id = product.id
         review.id = id
         # form = EmployeeForm(request.POST, instance = review)
-        review.rating = request.POST.get("rating", 3)
-        review.comment = request.POST.get("comment", "good product")
+        review.rating = request.POST.get("rating", '')
+        review.comment = request.POST.get("comment", '')
         review.date_time = date.today()
         review.user = request.user
         if review.comment:
@@ -127,7 +133,7 @@ def loadProduct(request,id):
 			average=0
 		else:
 			average = round(average,2)
-		reviews = "sample review"
+		
 		
 		context={
 			"prod":product,
@@ -135,7 +141,7 @@ def loadProduct(request,id):
 			"average":average,
 		}
 					
-		return render(request,'products/details.html',context)
+		return render(request,'products/product001.html',context)
 	
 def loadReviews(request,id):
 
@@ -148,4 +154,63 @@ def loadReviews(request,id):
 					
 		return render(request,'products/allReviews.html',context)	
 	
-	
+def viewReview(request,id):
+
+	if request.user.is_authenticated:
+		review=Review.objects.get(id=id)
+		product = review.product
+		product_id = product.id
+		
+		
+        
+		return render(request, "products/productReview.html", {"review": review, "product": product})
+		
+	else:
+		return redirect("users:login")	
+
+@api_view(['GET'])
+def getProducts(request):
+	products = Product.objects.all().order_by('id')
+	serializer = ProductSerializer(products, many= True)
+	return Response(serializer.data)
+
+
+
+class ProductList(APIView):
+    def post(self, request):
+        if request.user.is_authenticated:
+            # Fetch data from the FakeStoreAPI
+            url = "http://localhost:8000/getproducts/"
+            response = requests.get(url)
+            data = response.json()
+
+            # Serialize the data and validate it and save
+            if request.method == "POST":
+                serializer = ProductSerializer(data=data, many=True)
+                serializer.is_valid(raise_exception=True)
+                products = serializer.save()
+
+                # Return response with list of uploaded products
+                # return Response(ProductSerializer(products, many=True).data)
+                message = {
+                    "message": "Products added successfully! Go to http://localhost:8000 "
+                }
+                return Response(message)
+
+    def get(self, request):
+        # Return a list of all products
+        if request.user.is_superuser:
+            url = "http://localhost:8000/getproducts/"
+            response = requests.get(url)
+            data = response.json()
+            serializer = ProductSerializer(data=data, many=True)
+
+            if serializer.is_valid():
+                responseData = serializer.data
+            return Response(responseData)
+        else:
+            messages.warning(
+                request, "Only admin can perform this task. Please login as admin."
+            )
+            return redirect("products:home")
+
