@@ -11,6 +11,7 @@ from datetime import date
 from django.contrib import messages
 from django.urls import reverse
 from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
@@ -177,40 +178,23 @@ def getProducts(request):
 
 
 class ProductList(APIView):
-    def post(self, request):
-        if request.user.is_authenticated:
-            # Fetch data from the FakeStoreAPI
-            url = "http://localhost:8000/getproducts/"
-            response = requests.get(url)
-            data = response.json()
-
-            # Serialize the data and validate it and save
-            if request.method == "POST":
-                serializer = ProductSerializer(data=data, many=True)
-                serializer.is_valid(raise_exception=True)
-                products = serializer.save()
-
-                # Return response with list of uploaded products
-                # return Response(ProductSerializer(products, many=True).data)
-                message = {
-                    "message": "Products added successfully! Go to http://localhost:8000 "
-                }
-                return Response(message)
-
-    def get(self, request):
-        # Return a list of all products
-        if request.user.is_superuser:
-            url = "http://localhost:8000/getproducts/"
-            response = requests.get(url)
-            data = response.json()
-            serializer = ProductSerializer(data=data, many=True)
-
-            if serializer.is_valid():
-                responseData = serializer.data
-            return Response(responseData)
-        else:
-            messages.warning(
-                request, "Only admin can perform this task. Please login as admin."
-            )
-            return redirect("products:home")
+	serializer_class = ProductSerializer
+	def post(self, request):
+		if request.user.is_authenticated:
+			serializer = ProductSerializer(data=request.data)
+			if serializer.is_valid():
+				serializer.save()
+				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+			else:
+				return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+		 
+		 
+	def get(self, request, id=None):
+		if id:
+			products = Product.objects.all().order_by('id')
+			serializer = ProductSerializer(products)
+			return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+		items = Product.objects.all()
+		serializer = ProductSerializer(items, many=True)
+		return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 
