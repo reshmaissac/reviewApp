@@ -51,8 +51,7 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'products',
-    'rest_framework',
-    'api',
+    'rest_framework', 
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -109,8 +108,8 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 #         'NAME': 'review_app',
 #         'USER': 'root',
 #         'PASSWORD': 'root',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
+#         'HOST': '192.158.5.13',
+#         'PORT': '3306'
 #     }
 # }
 

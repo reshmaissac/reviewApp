@@ -4,17 +4,10 @@
 <section class="container my-5">
   <div class="row">
     <div class="col-md-8">
-      <h1>Product Name</h1>
-      <p>Product description goes here.</p>
+      <h1>{{product.name}} review by {{ review.user.username}}</h1>
+     
     </div>
-    <div class="col-md-4">
-      <div class="card bg-light">
-        <div class="card-body">
-          <h5 class="card-title">Average Rating</h5>
-          <p class="card-text display-4 text-center">4.5</p>
-        </div>
-      </div>
-    </div>
+    
   </div>
   <!-- User Reviews Section -->
   <hr />
@@ -22,144 +15,36 @@
   <h2>User Reviews</h2>
   <!-- Review Box -->
   <div class="row">
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
+    <div class="col-md-4">
+     
+      <img class="rounded-circle account-img media" src="{{review.user.profile.image.url}}">
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <h4 class="card-title mb-0">Review</h4>
+              <div class="d-flex align-items-center">
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                <span class="ml-2">{{review.rating}}/5</span>
+              </div>
             </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
+            <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}} </h6>
+            <p class="card-text">
+              {{review.comment}}
+            </p>
+            {% if review.user.id == request.user.id %}
+            <div class="d-flex justify-content-end">
+              <a href="/edit/{{ review.id }}" class="btn btn-primary mr-2"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+              <a href="/delete/{{ review.id }}" class="btn btn-danger">Delete</a>
+            </div>
+            {% endif %}
           </div>
         </div>
-      </div>
+      
     </div>
     <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Review -->
-    <div class="col-md-6 mb-4">
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-between">
-            <h4 class="card-title mb-0">Review Title</h4>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              <span class="ml-2">4.0</span>
-            </div>
-          </div>
-          <h6 class="card-subtitle mb-2 text-muted">by Foga Chokor</h6>
-          <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod turpis quis
-            feugiat dictum.
-          </p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-primary mr-2">Edit Review</button>
-            <button class="btn btn-danger">Delete Review</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </section>
 {% endblock %}
