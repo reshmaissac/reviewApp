@@ -11,7 +11,7 @@ def home(request):
     return render(request, 'home/home.html', {'title': 'Welcome Page'})
 
 def about(request):
-    return render(request, 'home/aboutUs.html', {'title': 'About Us'})
+    return render(request, 'home/aboutUs.html', {'title': 'About Us Page'})
 
 def contact(request):
     if request.method == "GET":
