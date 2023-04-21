@@ -6,7 +6,7 @@ djangorestframework==3.14.0
 Pillow==9.4.0
 requests==2.25.1
 whitenoise==6.4.0
-azure-core-1.26.4
+azure-core-1.26.3
 azure-storage-blob-12.16.0
 django-storages-1.13.2
 isodate-0.6.1
