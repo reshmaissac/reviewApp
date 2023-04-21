@@ -9,4 +9,3 @@ whitenoise==6.4.0
 django-storages==1.13.2
 azure-core==1.26.3
 azure-storage-blob==12.14.1
-typing-extensions-4.5.0
