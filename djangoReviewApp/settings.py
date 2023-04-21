@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'products',
     'rest_framework', 
+    'storages',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -175,3 +176,15 @@ MEDIA_URL = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
+
+#Azure storage settings
+DEFAULT_FILE_STORAGE = 'djangoReviewApp.custom_azure.AzureMediaStorage'
+STATICFILES_STORAGE = 'djangoReviewApp.custom_azure.AzureStaticStorage'
+
+STATIC_LOCATION = "static"
+MEDIA_LOCATION = "media"
+
+AZURE_ACCOUNT_NAME = "reviewappstorage001"
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
