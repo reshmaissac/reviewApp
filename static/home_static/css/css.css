@@ -1,62 +1,115 @@
 .email-sent-wrapper {
-    background-color: #f1f1f1;
-    font-family: 'Open Sans', sans-serif;
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid #ccc;
-  }
+  background-color: #f1f1f1;
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #ccc;
+}
 
-  .email-sent-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  } 
+.email-sent-header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-  .email-sent-body {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
+.email-sent-body {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 
-  h1, .h1 { /*THIS IS FOR THE HEADERS TITLE CAN CUSTOMISE ANYTIME*/
-    font-size: 3rem;
-    color: rgb(78, 91, 94);
-  }
+h1,
+.h1 {
+  /*THIS IS FOR THE HEADERS TITLE CAN CUSTOMISE ANYTIME*/
+  font-size: 3rem;
+  color: rgb(15, 15, 16);
+}
 
-  h2, .h2 { /*THIS IS THE CONTACT PAGES HEADING FOR CONTACT US*/
-    font-size: 2.5rem;
-    color: black;
-  }
+h2,
+.h2 {
+  /*THIS IS THE CONTACT PAGES HEADING FOR CONTACT US*/
+  font-size: 2.5rem;
+  color: rgb(7, 7, 7);
+}
 
-  .p-5{ /*THIS IS THE PADDING FOR THE WELCOME PAGE AND THE NAVIGATION BAR */
-    padding: 1.5rem !important;
-    text-align: center;
-  }
+.p-5 {
+  /*THIS IS THE PADDING FOR THE WELCOME PAGE AND THE NAVIGATION BAR */
+  padding: 1.5rem !important;
+  text-align: center;
+}
 
-  p.lead{ /*THIS IS UNDER THE H1 HEADER */
-    font-size: 1.5rem;
-  }
+p.lead {
+  /*THIS IS UNDER THE H1 HEADER */
+  font-size: 1.5rem;
+}
 
- .bg-dark{ /*COLOUR OF THE NAVIGATION BACKGROUNF */
-  background-color: rgb(92, 109, 116) !important;
- }
+.bg-dark {
+  /*COLOUR OF THE NAVIGATION BACKGROUND */
+  background-color: rgb(112, 184, 233) !important;
+}
 
- .container{ /*THIS IS THE CONTAINER THAT HOLDS THE PRODUCTS FROM THE HOMEPAGE*/
+.container {
+  /*THIS IS THE CONTAINER THAT HOLDS THE PRODUCTS FROM THE HOMEPAGE*/
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 
- }
+}
 
- .col-md-4{ /*THIS IS FOR THE SPACING BETWEEN THE PRODUCTS OUTLINE BOXS AND TO SPERATE AND ALSO CLOSE THEM WHATEER YOU CHOOSE*/
+.col-md-4 {
+  /*THIS IS FOR THE SPACING BETWEEN THE PRODUCTS OUTLINE BOXS AND TO SPERATE AND ALSO CLOSE THEM WHATEER YOU CHOOSE*/
   position: relative;
   width: 100%;
   padding-right: auto;
   padding-left: auto;
- }
+}
 
- .pt-5, .py-5{
+.pt-5, .py-5 { /*THIS IS FOR SPACING OUT THE CONTACT US PAGE*/
   padding: 2.5rem;
   padding-bottom: 2rem !important;
- }
+  margin-left: 20%;
+}
+
+.navbar-dark .navbar-nav .active > .nav-link /*THIS IS FOR THE COLOUR OF THE HOME PAGES NAVIGATION BUTTON*/
+{
+  color: rgb(255, 255, 255);
+}
+
+.navbar-dark .navbar-nav .nav-link{ /*THIS IS FOR THE COLOUR OF THE CONTACT & ABOUT US PAGES NAVIGATION BUTTON*/
+  color: rgb(255, 255, 255);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover{ /*THIS IS FOR THE COLOUR WHEN HOVERING OVER THE PAGES NAVIGATION BUTTON*/
+  color: rgb(0, 0, 0);
+}
+
+.navbar-dark .navbar-brand{ /*THIS CHNAGES THE COLOUR OF THE SHOPGENOVIA COLOUR AT THE TOP RIGHT*/
+  color: black;
+}
+
+.text-light{ /*THIS IS FOR THE CHANGING THE COLOUR OF THE COPYRIGHT TEXT*/
+  color: black;
+}
+
+label{ /*THIS IS FOR THE RATING BOX WHICH INSTEAD OF BEING PUT UNDER I HAVE MOVED IT NEXT TO IT TO SAVE MORE SPACE*/
+  display: -webkit-inline-box;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.img-fluid{ /*THIS SHOWS THE CHNAGES FOR THE IMAGE OF THE SMARTPHOME SIZE*/
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+
+.mb-4, .my-4{ /*CLOSES THE USER REVIEW AND THE IMAGE TOGETHER IN SMARTPHONE PRODUCT*/ 
+  margin-bottom: 0.5rem !important;
+}
+
+button, select{ /*CHANGES THE COLOUR OF THE SUBMIT BUTTON AND ALSO THE RATING NUMBER*/
+  text-transform: uppercase;
+  color: black;
+}
