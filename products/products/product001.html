@@ -1,0 +1,88 @@
+{% extends "home/base.html" %} {% block content %} <br /><br />
+<!-- Product Section -->
+<section class="container py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img
+        src="{{prod.photo.url}}"
+        alt="Product Image"
+        class="img-fluid mb-4"
+      />
+    </div>
+    <div class="col-md-6">
+      <h1>{{ prod.name }}</h1>
+      <p class="lead mb-4">Brand/Manufacturer: {{ prod.brand }}</p>
+      <p class="mb-4"><strong>Average Cost:</strong> £{{ prod.cost }}</p>
+      <p class="mb-4"><strong>Category:</strong> {{ prod.category }}</p>
+      <p class="mb-4"><strong>Date Released:</strong> {{ prod.release_date }}</p>
+      <p class="mb-4"><strong>Average Rating:</strong> {{ average }}/5</p>
+      <p>
+        Description: {{ prod.description }}
+      </p>
+      
+    </div>
+  </div>
+</section>
+<!-- User Reviews Section -->
+<section class="container py-5">
+  <h2>User Reviews</h2>
+  <div class="d-flex justify-content-end">
+    <div id="reviews" style="height:50%; width: 100%; padding: 40px; background-color: #9cb4e4; border-radius: 27px; padding: 2rem;" >
+      <h2>Rate the Product</h2>
+    {% if request.user.is_authenticated %}
+    <form method="post" action=".">
+      {%csrf_token%}
+      <div>
+        <label>Rating</label>
+        <select name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div><br>
+      <div>
+        <label>Comment</label><br>
+        <textarea name="comment"></textarea>
+      </div><br>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+    {%endif%}
+    
+    </div>
+    
+  </div>
+  <div class="row">
+    {% for review in prod.reviews.all%}
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-body">
+          
+          <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}}</h6>
+          <div class="ratings">
+            <strong>Rating : </strong>{{ review.rating}}/5<br>
+    
+    
+            <i class="fa fa-star rating-color"></i>
+            <i class="fa fa-star rating-color"></i>
+            <i class="fa fa-star rating-color"></i>
+            <i class="fa fa-star rating-color"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <div class="d-flex justify-content-end">
+    
+            <a href="{% url 'products:viewReview' review.id %}" class="btn btn-primary">View More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+   
+    
+  </div>
+</section>
+{% endblock %}

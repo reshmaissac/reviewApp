@@ -1,0 +1,32 @@
+{% extends "home/base.html" %}
+{% block content %}
+<br>
+
+<div id="reviews" style="width: 100%; padding: 50px; background-color: #dfe3eb; border-radius: 5px; " >
+	<h2>Edit Rating</h2>
+{% if request.user.is_authenticated %}
+<form method="post" action="">
+	{%csrf_token%}
+	<div>
+		<label>Rating</label>
+		<select name="rating" value="{{review.rating}}">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+	</div><br>
+	<div>
+		<label>Comment</label><br>
+		<textarea name="comment">{{review.comment}}</textarea>
+	</div><br>
+	<div>
+		<!-- <a href="/update/{{ review.id }}"><span class="glyphicon glyphicon-pencil" >Update</span></a>   -->
+        <button>Submit</button>
+	</div>
+</form>
+{%endif%}
+
+</div>
+{% endblock %}
