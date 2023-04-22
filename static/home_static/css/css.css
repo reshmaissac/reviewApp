@@ -44,7 +44,7 @@ p.lead {
 
 .bg-dark {
   /*COLOUR OF THE NAVIGATION BACKGROUND */
-  background-color: rgb(112, 184, 233) !important;
+  background-color: #0e9fcf !important;
 }
 
 .container {
@@ -65,10 +65,18 @@ p.lead {
   padding-left: auto;
 }
 
+.col-md-8{ /*THIS IS FOR THE PROFILES CENTERING*/
+  position: relative;
+  width: 100%;
+  padding-right: 35px;
+  padding-left: 70px;
+  margin-left: 10%;
+}
+
 .pt-5, .py-5 { /*THIS IS FOR SPACING OUT THE CONTACT US PAGE*/
   padding: 2.5rem;
   padding-bottom: 2rem !important;
-  margin-left: 20%;
+  margin-left: 25%;
 }
 
 .navbar-dark .navbar-nav .active > .nav-link /*THIS IS FOR THE COLOUR OF THE HOME PAGES NAVIGATION BUTTON*/
@@ -98,7 +106,7 @@ label{ /*THIS IS FOR THE RATING BOX WHICH INSTEAD OF BEING PUT UNDER I HAVE MOVE
   font-weight: bold;
 }
 
-.img-fluid{ /*THIS SHOWS THE CHNAGES FOR THE IMAGE OF THE SMARTPHOME SIZE*/
+.img-fluid{ /*THIS SHOWS THE CHANGES FOR THE IMAGE OF THE SMARTPHOME SIZE*/
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -112,4 +120,12 @@ label{ /*THIS IS FOR THE RATING BOX WHICH INSTEAD OF BEING PUT UNDER I HAVE MOVE
 button, select{ /*CHANGES THE COLOUR OF THE SUBMIT BUTTON AND ALSO THE RATING NUMBER*/
   text-transform: uppercase;
   color: black;
+}
+
+.btn{ /*THIS RESIZES THE FONTS SIZE OF THE NAVIGATION AND ALSO THE */
+  display: inline-block;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 5px;
 }
