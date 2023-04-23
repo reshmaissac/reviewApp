@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
 
     #apps
     'home',
@@ -108,9 +110,9 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'review_app',
+        'NAME': 'reviewApp',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': 'sqlpassword1',
         'HOST': 'localhost',
         'PORT': '3306',
     }
