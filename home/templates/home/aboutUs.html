@@ -1,4 +1,7 @@
-{% extends "home/base.html" %} {% block content %}
+{% extends "home/base.html" %} 
+{% load static %}
+
+{% block content %}
 <main>
   <div class="card-body">
     <div class="container">
@@ -16,7 +19,7 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <img class="card-img-top" src="img/Logo.png" alt="Company Logo" />
+          <img class="card-img-top" src="{% static 'home_static/img/Logo.png' %}" alt="Company Logo" />
           <div class="card-body">
             <h2>Our Story</h2>
             <p>
@@ -31,7 +34,7 @@
       </div>
       <div class="col-md-6">
         <div class="card">
-          <img class="card-img-top" src="img/theTeam.jpg" alt="Team Members" />
+          <img class="card-img-top" src="{% static 'home_static/img/theTeam.jpg' %}" alt="Team Members" />
           <div class="card-body">
             <h2>Our Team</h2>
             <p>
