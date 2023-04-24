@@ -80,14 +80,14 @@ def detail(request,id):
     				date_time=date.today(),
 
 				)
-			result=loadProduct(request, id)
-			return HttpResponse(result)
+		
 
+			return redirect('/details/{}/'.format(id))	
+		
 		else:
-			
-			product = Product.objects.get(id=id)
-			result=loadProduct(request, id)
-			return HttpResponse(result)
+				product = Product.objects.get(id=id)
+				result=loadProduct(request, id)
+				return HttpResponse(result)
 	else:
 		return redirect("users:login")
 
