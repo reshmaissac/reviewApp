@@ -87,8 +87,7 @@ def detail(request,id):
     				date_time=date.today(),
 
 				)
-			result=loadProduct(request, id)
-			return HttpResponse(result)
+			return redirect('/details/{}/'.format(id))	
 
 		else:
 			
