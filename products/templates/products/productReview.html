@@ -1,25 +1,25 @@
 {% extends "home/base.html" %} {% block content %}
 <!-- Product Description and Rating Section-->
-<br /><br />
+
 <section class="container my-5">
   <div class="row">
     <div class="col-md-8">
-      <h1>{{product.name}} review by {{ review.user.username}}</h1>
+      <h3>{{product.name}} review by {{ review.user.username}}</h3>
      
     </div>
     
   </div>
-  <!-- User Reviews Section -->
-  <hr />
+  <!-- User Reviews Section <h2>User Reviews</h2>s -->
+  <br />
 
-  <h2>User Reviews</h2>
+  
   <!-- Review Box -->
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
      
       <img class="rounded-circle account-img media" src="{{review.user.profile.image.url}}">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between">
@@ -29,6 +29,7 @@
                 <span class="ml-2">{{review.rating}}/5</span>
               </div>
             </div>
+            <br>
             <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}} </h6>
             <p class="card-text">
               {{review.comment}}
