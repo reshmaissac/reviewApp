@@ -65,6 +65,14 @@ p.lead {
   padding-left: auto;
 }
 
+.col-md-6{
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+
 .col-md-8{ /*THIS IS FOR THE PROFILES CENTERING*/
   position: relative;
   width: 100%;
@@ -128,4 +136,29 @@ button, select{ /*CHANGES THE COLOUR OF THE SUBMIT BUTTON AND ALSO THE RATING NU
   text-align: center;
   font-size: 14px;
   border-radius: 5px;
+}
+
+.card-body{ /*THIS SEPREATES THE USER REVIEW BOX AND COMMITS SO THAT THEY ARE NOT INSIDE OF EACH OTHER*/
+  margin:2px;
+  padding-top: 30px;
+}
+.row {
+    text-align: justify;
+    min-width: 412px;
+    padding: 5px;
+}
+
+.row:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+.col {
+    display: inline-block;
+}
+.box {
+    border: 1px solid #DDD;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
 }
