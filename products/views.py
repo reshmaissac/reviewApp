@@ -206,22 +206,27 @@ def getProducts(request):
 class ProductList(APIView):
 	serializer_class = ProductSerializer
 	def post(self, request):
-		if request.user.is_authenticated:
+		if request.user.is_superuser:
 			serializer = ProductSerializer(data=request.data)
 			if serializer.is_valid():
 				serializer.save()
 				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 			else:
 				return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-		 
+		else:
+			messages.warning(request, 'Only admin can perform this task. Please login as admin.')
+			return redirect("products:home") 
 		 
 	def get(self, request, id=None):
-		if id:
-			products = Product.objects.all().order_by('id')
-			serializer = ProductSerializer(products)
+		if request.user.is_superuser:
+			if id:
+				products = Product.objects.all().order_by('id')
+				serializer = ProductSerializer(products)
+				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+			items = Product.objects.all()
+			serializer = ProductSerializer(items, many=True)
 			return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-		items = Product.objects.all()
-		serializer = ProductSerializer(items, many=True)
-		return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-
+		else:
+			messages.warning(request, 'Only admin can perform this task. Please login as admin.')
+			return redirect("products:home") 
 	
