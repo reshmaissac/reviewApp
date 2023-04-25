@@ -1,16 +1,19 @@
 {% extends "home/base.html" %} {% block content %} <br />
 <!-- Product Section -->
-<section class="container py-5">
+<section class="container py-5" >
   <div class="row">
     <div class="col-md-6">
+      <div class="card" >
       <img
         src="{{prod.photo.url}}"
         alt="Product Image"
-        class="img-fluid mb-4"
-      />
+        class="img-fluid mb-4" style="width: 100%;height: 100%;"
+      /></div>
     </div>
-    <div class="col-md-6">
-      <br><br>
+
+
+    <div class="col-md-6" style="padding-left: 50px;">
+      
       <h1>{{ prod.name }}</h1>
       <p class="lead mb-4">Brand/Manufacturer: {{ prod.brand }}</p>
       <p class="mb-4"><strong>Average Cost:</strong> £{{ prod.cost }}</p>
@@ -59,17 +62,20 @@
 
   <br><br>
   <h2>User Reviews</h2><br>
-  <div class="row">
+  <div class="row" >
     {% for review in prod.reviews.all%}
-    <div class="col-md-6 mb-4">
-      <div class="card">
+    <div class="col-md-12 ">
+
+<!-- ============================================================================== -->
+     
+      <div class="card" >
         <div class="card-body">
-          <img class="rounded-circle account-img media" src="{{review.user.profile.image.url}}">
+          <div class="row" >
+            <div class="col-md-1 "><img class="rounded-circle account-img media" style="max-height: 50px; max-width: 50px;margin: 5px;" src="{{review.user.profile.image.url}}"></div>
+            <div class="col-md-11 ">
           <h6 class="card-subtitle mb-2 text-muted">Posted on {{ review.date_time}} by {{ review.user.username}}</h6>
           <div class="ratings">
-            <strong>Rating : </strong>{{ review.rating}}/5<br>
-    
-    
+            <strong>Rating : </strong>{{ review.rating}}/5<br>    
             <i class="fa fa-star rating-color"></i>
             <i class="fa fa-star rating-color"></i>
             <i class="fa fa-star rating-color"></i>
@@ -77,15 +83,16 @@
             <i class="fa fa-star"></i>
           </div>
           <div class="d-flex justify-content-end">
-    
             <a href="{% url 'products:viewReview' review.id %}" class="btn btn-primary">View More</a>
-          </div>
+          </div></div>
         </div>
       </div>
     </div>
+<!-- ============================================================================== -->
+
+      
+    </div>
     {% endfor %}
-    
-   
     
   </div>
 </section>

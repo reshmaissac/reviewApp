@@ -199,3 +199,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
+
+
+#Azure Functions
+AZURE_FUNCTION_URL = 'https://fn-reviewapp-grpa.azurewebsites.net/api/ProdReviewEmailConfirmation'
+AZURE_FUNCTION_KEY = 'bFBSiQZuDgaUof5GvajIrOZ7wMWVf4KpsNNzFf0d1hfVAzFu33h8nA=='
