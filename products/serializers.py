@@ -9,14 +9,15 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
-    name = serializers.CharField(required=False)
-    description = serializers.CharField(required=False)
-    cost = serializers.FloatField(required=False)
+    name = serializers.CharField(required=True)
+    description = serializers.CharField(required=True)
+    cost = serializers.FloatField(required=True)
     category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
     
-    photo = serializers.URLField(required=False, source='image',read_only=True)
+    photo = serializers.URLField(required=True, source='image')
     brand = serializers.CharField(required=False, default='Default Brand')
     release_date = serializers.DateField(default = date.today)
+    photo = serializers.ImageField(default = 'default_prod.jpg')
 
     class Meta:
         model = Product
