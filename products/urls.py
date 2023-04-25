@@ -14,8 +14,8 @@ urlpatterns = [
     path('api-products/', ProductList.as_view(), name='api-products'),
 
     path('viewReview/<int:id>', views.viewReview, name="viewReview"), 
-    path('edit/<int:id>', views.edit, name="edit"), 
-    path('delete/<int:id>', views.destroy), 
+    path('edit/<int:id>', views.editReview, name="edit"), 
+    path('delete/<int:id>', views.destroyReview), 
     
    
 
