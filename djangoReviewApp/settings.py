@@ -105,24 +105,24 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'review_app',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         'HOST': '192.158.5.13',
-#         'PORT': '3306'
-#     }
-# }
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'review_app',
+        'USER': 'c2023237',
+        'PASSWORD': 'admin@123',
+        'HOST': 'my-student-mysql.mysql.database.azure.com',
+        'PORT': '3306'
     }
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 
@@ -202,5 +202,5 @@ REST_FRAMEWORK = {
 
 
 #Azure Functions
-AZURE_FUNCTION_URL = 'https://fn-reviewapp-grpa.azurewebsites.net/api/ProdReviewEmailConfirmation'
-AZURE_FUNCTION_KEY = 'bFBSiQZuDgaUof5GvajIrOZ7wMWVf4KpsNNzFf0d1hfVAzFu33h8nA=='
+AZURE_FUNCTION_URL = os.environ['AZURE_FUNCTION_URL']
+AZURE_FUNCTION_KEY = os.environ['AZURE_FUNCTION_KEY']
