@@ -108,11 +108,11 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'review_app',
-        'USER': 'c2023237',
-        'PASSWORD': 'admin@123',
-        'HOST': 'my-student-mysql.mysql.database.azure.com',
-        'PORT': '3306',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
         'OPTIONS': {
             'ssl_verify_cert': True
         }
