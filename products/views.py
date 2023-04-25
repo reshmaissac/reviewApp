@@ -1,3 +1,4 @@
+from django.conf import settings
 import requests
 from django.shortcuts import render, redirect
 from .serializers import ProductSerializer
@@ -87,6 +88,8 @@ def detail(request,id):
     				date_time=date.today(),
 
 				)
+			azureResponse = sendReviewConfirmMailViaAF(review)
+			print(azureResponse)
 			return redirect('/details/{}/'.format(id))	
 
 		else:
@@ -167,13 +170,37 @@ def viewReview(request,id):
 		
 	else:
 		return redirect("users:login")	
+	
+
+def sendReviewConfirmMailViaAF(review):
+
+	# Get the review data from the request
+    user_email = review.user.email
+    product_name = review.product.name
+    review_id = review.id
+	
+
+    # Make a POST request to your Azure Function URL with the review data in the request body
+    function_url = settings.AZURE_FUNCTION_URL
+    function_key = settings.AZURE_FUNCTION_KEY  # The function key for authentication
+    headers = {'Content-Type': 'application/json', 'x-functions-key': function_key}
+    data = {'user_email': user_email, 'product_name': product_name, 'review_id':review_id}
+    response = requests.post(function_url, headers=headers, json=data)
+
+    if response.status_code == 200:
+	    
+        # Success
+        return response
+			
+    else:
+        # Error
+        return response
 
 @api_view(['GET'])
 def getProducts(request):
 	products = Product.objects.all().order_by('id')
 	serializer = ProductSerializer(products, many= True)
 	return Response(serializer.data)
-
 
 
 class ProductList(APIView):
@@ -197,3 +224,4 @@ class ProductList(APIView):
 		serializer = ProductSerializer(items, many=True)
 		return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 
+	
