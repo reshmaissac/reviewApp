@@ -1,7 +1,8 @@
 # reviewApp
 Cloud Assessment 2 - Group A
+https://shopgenovia-reviewapp.azurewebsites.net/ 
 
-https://user-images.githubusercontent.com/46741250/234657620-21688f37-f6af-4452-8d21-bbebbc93e88f.png
+ER Diagram : https://user-images.githubusercontent.com/46741250/234657620-21688f37-f6af-4452-8d21-bbebbc93e88f.png
 
   Application Features:
   1. Browse products on home page
