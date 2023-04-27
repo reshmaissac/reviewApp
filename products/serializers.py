@@ -8,10 +8,12 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField()
     name = serializers.CharField(required=False)
     description = serializers.CharField(required=False)
     cost = serializers.FloatField(required=False)
-    category = serializers.CharField(required=False)
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all())
+    
     photo = serializers.URLField(required=False, source='image',read_only=True)
     brand = serializers.CharField(required=False, default='Default Brand')
     release_date = serializers.DateField(default = date.today)

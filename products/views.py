@@ -1,4 +1,6 @@
+import requests
 from django.shortcuts import render, redirect
+from .serializers import ProductSerializer
 from django.http import HttpResponse
 from .models import *
 from .forms import *
@@ -8,6 +10,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from datetime import date
 from django.contrib import messages
 from django.urls import reverse
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer
 # function to list products and search products in home page
 def home(request):
 	query = request.GET.get("q")
@@ -80,8 +87,6 @@ def detail(request,id):
     				date_time=date.today(),
 
 				)
-		
-
 			return redirect('/details/{}/'.format(id))	
 		
 		else:
@@ -161,3 +166,33 @@ def viewReview(request,id):
 		
 	else:
 		return redirect("users:login")	
+
+@api_view(['GET'])
+def getProducts(request):
+	products = Product.objects.all().order_by('id')
+	serializer = ProductSerializer(products, many= True)
+	return Response(serializer.data)
+
+
+
+class ProductList(APIView):
+	serializer_class = ProductSerializer
+	def post(self, request):
+		if request.user.is_authenticated:
+			serializer = ProductSerializer(data=request.data)
+			if serializer.is_valid():
+				serializer.save()
+				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+			else:
+				return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+		 
+		 
+	def get(self, request, id=None):
+		if id:
+			products = Product.objects.all().order_by('id')
+			serializer = ProductSerializer(products)
+			return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+		items = Product.objects.all()
+		serializer = ProductSerializer(items, many=True)
+		return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+

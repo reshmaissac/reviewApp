@@ -39,14 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
 
     #apps
     'home',
     'users',
     'crispy_forms',
     'products',
-    'rest_framework',
-    'api',
+    'rest_framework', 
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -97,26 +98,27 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'review_app',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '192.168.5.13',
-        'PORT': '3306',
-    }
-}
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'review_app',
 #         'USER': 'root',
 #         'PASSWORD': 'root',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
+#         'HOST': '192.158.5.13',
+#         'PORT': '3306'
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'review_app',
+        'USER': 'root',
+        'PASSWORD': 'sqlpassword1',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
 
 
 
@@ -170,3 +172,11 @@ MEDIA_URL = 'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
+
+#Django rest browsable api
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}
