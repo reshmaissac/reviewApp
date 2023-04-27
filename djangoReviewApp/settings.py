@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'products',
     'rest_framework', 
+    'storages',
     
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -98,27 +99,27 @@ EMAIL_HOST_PASSWORD = 'tdocrlzgqlgmcteg'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': os.environ['DATABASE_PORT'],
+        'OPTIONS': {
+            'ssl_verify_cert': True
+        }
+    }
+}
+
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'review_app',
-#         'USER': 'root',
-#         'PASSWORD': 'root',
-#         'HOST': '192.158.5.13',
-#         'PORT': '3306'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'review_app',
-        'USER': 'root',
-        'PASSWORD': 'sqlpassword1',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
 
 
 
@@ -158,7 +159,9 @@ USE_TZ = True
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -173,6 +176,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'products:home'
 LOGIN_URL = 'users:login'
 
+#Azure storage settings
+DEFAULT_FILE_STORAGE = 'djangoReviewApp.custom_azure.AzureMediaStorage'
+STATICFILES_STORAGE = 'djangoReviewApp.custom_azure.AzureStaticStorage'
+
+STATIC_LOCATION = "static"  
+MEDIA_LOCATION = "media"
+
+AZURE_ACCOUNT_NAME = os.environ['AZURE_ACCOUNT_NAME']
+AZURE_ACCOUNT_KEY = os.environ['AZURE_ACCOUNT_KEY']
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+
 #Django rest browsable api
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
@@ -183,5 +199,5 @@ REST_FRAMEWORK = {
 
 
 #Azure Functions
-AZURE_FUNCTION_URL = 'https://fn-reviewapp-grpa.azurewebsites.net/api/ProdReviewEmailConfirmation'
-AZURE_FUNCTION_KEY = 'bFBSiQZuDgaUof5GvajIrOZ7wMWVf4KpsNNzFf0d1hfVAzFu33h8nA=='
+AZURE_FUNCTION_URL = os.environ['AZURE_FUNCTION_URL']
+AZURE_FUNCTION_KEY = os.environ['AZURE_FUNCTION_KEY']

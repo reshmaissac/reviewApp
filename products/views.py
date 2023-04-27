@@ -22,7 +22,7 @@ def home(request):
 	allproducts = None
 	if query:
 		allproducts = Product.objects.filter(
-			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__name__icontains=query))
+			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__name__icontains=query)).order_by('id')
 		
 	else:	
 		allproducts = Product.objects.all().order_by('id')
