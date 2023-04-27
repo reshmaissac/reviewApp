@@ -1,7 +1,7 @@
 {% extends "home/base.html" %} {% block content %}
 <body>
   <!-- Header Section -->
-  <header class="bg-light p-5">
+  <header class="bg-light p-4">
     <h1>Welcome to ShopGenovia</h1>
     <p class="lead">Review our selection of high-quality products</p>
     <!-- <a href="#" class="btn btn-primary btn-lg">Shop Now</a> -->
@@ -10,18 +10,31 @@
   <section class="container py-5">
     <h2 class="mb-4">Our Products</h2>
     <div class="row">
-      {% for p in page_obj.object_list %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          <img src="{{ p.photo.url }}" alt="Image" class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">{{ p.name }}</h5>
-            <p class="card-text">{{ p.description }}</p>
-            <a href="{% url 'products:detail' p.id %}" class="btn btn-primary">View Product</a>
+      <div class="col-md-8">
+        {% for p in page_obj.object_list %}
+        <div class="col-md-8 mb-4">
+          <div class="card">
+            <img src="{{ p.photo.url }}" alt="Image" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ p.name }}</h5>
+              <p class="card-text">{{ p.description }}</p>
+              <a href="{% url 'products:detail' p.id %}" class="btn btn-primary">View Product</a>
+            </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
+      <div class="col-md-4">
+        <div class="content-section">
+          <h3>Browse by Category</h3>
+          <ul class="list-group">
+              <li class="list-group-item list-group-item-light"><a class="mr-2" href="{% url 'products:home' %}?q=Smartphone">Smartphone</a></li>
+              <li class="list-group-item list-group-item-light"><a class="mr-2" href="{% url 'products:home' %}?q=SmartTV">SmartTV</a></li>
+            <li class="list-group-item list-group-item-light"><a class="mr-2" href="{% url 'products:home' %}?q=Smartwatch">Smartwatch</a></li>
+            <li class="list-group-item list-group-item-light"><a class="mr-2" href="{% url 'products:home' %}?q=others">Others</a></li>
+          </ul>
+      </div>
+      </div>
     </div>
     <div style="text-align:center">
       {%if page_obj.has_previous %} {# whether the previous page exists #}

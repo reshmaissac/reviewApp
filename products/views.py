@@ -1,3 +1,4 @@
+from django.conf import settings
 import requests
 from django.shortcuts import render, redirect
 from .serializers import ProductSerializer
@@ -13,16 +14,16 @@ from django.urls import reverse
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, renderer_classes
-from rest_framework.renderers import JSONRenderer
-# function to list products and search products in home page
+from rest_framework.decorators import api_view
+
+# function to list products and search/filter products in home page
 def home(request):
 	query = request.GET.get("q")
 	allproducts = None
 	if query:
 		allproducts = Product.objects.filter(
 			Q(name__icontains=query) | Q(brand__icontains=query) | Q(category__name__icontains=query))
-		#(name__icontains=query).filter(brand__icontains=query).filter(category__icontains=query)
+		
 	else:	
 		allproducts = Product.objects.all().order_by('id')
 	
@@ -68,11 +69,12 @@ def allreviews(request, id):
 	result=loadReviews(request, id)
 	return HttpResponse(result)
 
+#function to get product and review details
 def detail(request,id):
 
-	if request.user.is_authenticated:
+	if request.user.is_authenticated: 
 		
-		if request.method == "POST":
+		if request.method == "POST": #add product reviews
 			product=Product.objects.get(id=id)
 			rating= request.POST.get('rating','')
 			comment=request.POST.get('comment','')
@@ -87,6 +89,9 @@ def detail(request,id):
     				date_time=date.today(),
 
 				)
+			
+			azureResponse = sendReviewConfirmMailViaAF(review) #calling azure function
+
 			return redirect('/details/{}/'.format(id))	
 		
 		else:
@@ -96,7 +101,8 @@ def detail(request,id):
 	else:
 		return redirect("users:login")
 
-def edit(request, id):
+#function to edit review
+def editReview(request, id):
     review = Review.objects.get(id=id)
     if request.method == "POST":
         product = review.product
@@ -113,8 +119,8 @@ def edit(request, id):
     else:
         return render(request, "products/editReview.html", {"review": review})
 
-
-def destroy(request, id):  
+#function to delete review
+def destroyReview(request, id):  
 	review = Review.objects.get(id=id)
 	product = review.product
 	product_id = product.id
@@ -160,12 +166,37 @@ def viewReview(request,id):
 		product = review.product
 		product_id = product.id
 		
-		
-        
+		     
 		return render(request, "products/productReview.html", {"review": review, "product": product})
 		
 	else:
 		return redirect("users:login")	
+	
+#function to send confirmation email when user submits a review
+#using azure Function and SendGrid
+def sendReviewConfirmMailViaAF(review):
+
+	# Get the review data from the request
+    user_email = review.user.email
+    product_name = review.product.name
+    review_id = review.id
+	
+
+    # Make a POST request to your Azure Function URL with the review data in the request body
+    function_url = settings.AZURE_FUNCTION_URL
+    function_key = settings.AZURE_FUNCTION_KEY  # The function key for authentication
+    headers = {'Content-Type': 'application/json', 'x-functions-key': function_key}
+    data = {'user_email': user_email, 'product_name': product_name, 'review_id':review_id}
+    response = requests.post(function_url, headers=headers, json=data)
+
+    if response.status_code == 200:
+	    
+        # Success
+        return response
+			
+    else:
+        # Error
+        return response
 
 @api_view(['GET'])
 def getProducts(request):
@@ -173,26 +204,31 @@ def getProducts(request):
 	serializer = ProductSerializer(products, many= True)
 	return Response(serializer.data)
 
-
-
+#rest api to get and post products
 class ProductList(APIView):
 	serializer_class = ProductSerializer
 	def post(self, request):
-		if request.user.is_authenticated:
+		if request.user.is_superuser:
 			serializer = ProductSerializer(data=request.data)
 			if serializer.is_valid():
 				serializer.save()
 				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
 			else:
 				return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
-		 
+		else:
+			messages.warning(request, 'Only admin can perform this task. Please login as admin.')
+			return redirect("products:home") 
 		 
 	def get(self, request, id=None):
-		if id:
-			products = Product.objects.all().order_by('id')
-			serializer = ProductSerializer(products)
+		if request.user.is_superuser:
+			if id:
+				products = Product.objects.all().order_by('id')
+				serializer = ProductSerializer(products)
+				return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+			items = Product.objects.all()
+			serializer = ProductSerializer(items, many=True)
 			return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-		items = Product.objects.all()
-		serializer = ProductSerializer(items, many=True)
-		return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
-
+		else:
+			messages.warning(request, 'Only admin can perform this task. Please login as admin.')
+			return redirect("products:home") 
+	
